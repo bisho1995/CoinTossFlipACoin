@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, StatusBar} from 'react-native';
 import {Container, Card, CardItem, Body, Row, Button} from 'native-base';
 import {Tail, Head, View, Text} from '../components';
 import colors from '../styles/colors';
@@ -50,6 +50,10 @@ const Home = () => {
 
   return (
     <Container>
+      <StatusBar
+        backgroundColor={colors.darkPrimary}
+        barStyle="light-content"
+      />
       <View style={styles.containerStyle}>
         <Row style={{flex: 1}}>
           <View style={styles.margin}>
