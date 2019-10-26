@@ -5,7 +5,9 @@ import Text from './Text';
 const Heads = props => (
   <Coin {...props}>
     <View>
-      <Text textAlign="center">H</Text>
+      <Text textAlign="center" fontSize={Math.floor(props.dimension) / 2}>
+        H
+      </Text>
     </View>
   </Coin>
 );
