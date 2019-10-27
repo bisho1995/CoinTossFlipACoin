@@ -64,6 +64,7 @@ const Home = ({colors, ...props}) => {
               <Text
                 textAlign="center"
                 fontSize={30}
+                style={{fontWeight: 'bold'}}
                 marginLeft={spacing.margin}>
                 Flip A Coin
               </Text>
