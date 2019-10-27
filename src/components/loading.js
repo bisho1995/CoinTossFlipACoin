@@ -1,6 +1,6 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect} from 'react';
 import View from './View';
-import {Modal, StyleSheet} from 'react-native';
+import {Modal, StyleSheet, Animated, Easing} from 'react-native';
 import {Row} from 'native-base';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
@@ -12,17 +12,49 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#292929',
   },
-  iconWrapper: {justifyContent: 'center', height: iconSize + 20},
+  iconWrapper: {
+    height: iconSize + 20,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
 });
 
-const Loading = () => (
-  <Modal animationType="fade" transparent={false} visible={true}>
-    <View style={styles.wrapper}>
-      <Row style={styles.iconWrapper}>
-        <Icon name="spinner" size={iconSize} color="#e2e2e2" />
-      </Row>
-    </View>
-  </Modal>
-);
+const Loading = () => {
+  const spinValue = new Animated.Value(0);
+
+  const spinFn = () => {
+    spinValue.setValue(0);
+    Animated.timing(spinValue, {
+      toValue: 1,
+      duration: 800,
+      easing: Easing.linear,
+    }).start(spinFn);
+  };
+
+  useEffect(() => {
+    spinFn();
+  });
+
+  const spin = spinValue.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
+
+  console.log(spin);
+
+  return (
+    <Modal animationType="fade" transparent={false} visible={true}>
+      <View style={styles.wrapper}>
+        <Row style={styles.iconWrapper}>
+          <Animated.View
+            style={{maxWidth: iconSize, transform: [{rotate: spin}]}}>
+            <Icon name="spinner" size={iconSize} color="#e2e2e2" />
+          </Animated.View>
+        </Row>
+      </View>
+    </Modal>
+  );
+};
 
 export default memo(Loading);

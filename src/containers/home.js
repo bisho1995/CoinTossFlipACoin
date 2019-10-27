@@ -60,7 +60,7 @@ const Home = ({colors}) => {
 
   return (
     <>
-      {true ? <Loading /> : null}
+      {loading ? <Loading /> : null}
       <Container>
         <StatusBar
           backgroundColor={colors.darkPrimary}
