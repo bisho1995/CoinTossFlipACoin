@@ -5,6 +5,7 @@ import {store, persistor} from './store';
 import {Provider, connect} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
+import {enableScreens} from 'react-native-screens';
 
 class MyApp extends React.PureComponent {
   render() {
@@ -20,6 +21,7 @@ const mapStateToProps = ({theme}) => ({colors: theme});
 const CoinToss = connect(mapStateToProps)(MyApp);
 export default () => {
   changeNavigationBarColor('#757575');
+  enableScreens();
 
   return (
     <Provider store={store}>

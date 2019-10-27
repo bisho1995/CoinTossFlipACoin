@@ -1,4 +1,5 @@
 import React, {useState, memo} from 'react';
+import {gestureHandlerRootHOC} from 'react-native-gesture-handler';
 import {StyleSheet, StatusBar} from 'react-native';
 import {Container, Card, CardItem, Body, Row, Button, Icon} from 'native-base';
 import {Tail, Head, View, Text} from '../components';
@@ -130,6 +131,10 @@ Home.navigationOptions = {
   drawerIcon: () => <Icon active name="home" />,
 };
 
-export default UseTheme(({consumer: {colors: c}, ...props}) => (
-  <Home colors={c} {...props} />
-));
+const WrappedHome = gestureHandlerRootHOC(Home);
+
+export default memo(
+  UseTheme(({consumer: {colors: c}, ...props}) => (
+    <WrappedHome colors={c} {...props} />
+  )),
+);

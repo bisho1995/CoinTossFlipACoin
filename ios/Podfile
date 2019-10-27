@@ -37,6 +37,14 @@ target 'CoinTossflipACoin' do
 
 
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
+
+  pod 'RNReanimated', :path => '../node_modules/react-native-reanimated'
+
+  pod 'RNScreens', :path => '../node_modules/react-native-screens'
+
   target 'CoinTossflipACoinTests' do
     inherit! :search_paths
     # Pods for testing
