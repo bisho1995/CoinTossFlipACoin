@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {StyleSheet, StatusBar} from 'react-native';
-import {Container, Card, CardItem, Body, Row, Button} from 'native-base';
+import {Container, Card, CardItem, Body, Row, Button, Icon} from 'native-base';
 import {Tail, Head, View, Text} from '../components';
-import colors from '../styles/colors';
+import {colors, spacing} from '../styles';
 import commonStyles from '../styles/common';
 import {dimensions} from '../utils/utils';
 
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Home = () => {
+const Home = props => {
   const [rand, setRand] = useState(1);
 
   return (
@@ -58,11 +58,17 @@ const Home = () => {
         <Row style={{flex: 1}}>
           <View style={styles.margin}>
             <Row style={{display: 'flex', justifyContent: 'space-between'}}>
-              <Text width="auto" fontSize={30}>
+              <Text width="auto" fontSize={30} marginLeft={spacing.margin}>
                 Flip A Coin
               </Text>
-              <Text width="auto" style={{marginRight: 15, marginTop: 15}}>
-                Hamburger
+              <Text
+                width="auto"
+                style={{marginRight: spacing.margin, marginTop: 10}}>
+                <Icon
+                  active
+                  name="menu"
+                  onPress={() => props.navigation.toggleDrawer()}
+                />
               </Text>
             </Row>
           </View>
@@ -113,4 +119,10 @@ const Home = () => {
     </Container>
   );
 };
+
+Home.navigationOptions = {
+  drawerLabel: 'Home',
+  drawerIcon: () => <Icon active name="home" />,
+};
+
 export default Home;
