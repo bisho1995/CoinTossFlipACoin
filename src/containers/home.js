@@ -22,7 +22,7 @@ const Home = ({colors, ...props}) => {
     containerStyle: {
       ...StyleSheet.absoluteFill,
       ...commonStyles.flexColumn,
-      backgroundColor: colors.primary,
+      backgroundColor: colors.lightPrimary,
       justifyContent: 'space-around',
     },
     coinsWrapper: {
@@ -68,6 +68,7 @@ const Home = ({colors, ...props}) => {
                 <Icon
                   active
                   name="menu"
+                  style={{color: colors.secondary}}
                   onPress={() => props.navigation.toggleDrawer()}
                 />
               </Text>

@@ -5,7 +5,10 @@ import Text from './Text';
 const Heads = props => (
   <Coin {...props}>
     <View>
-      <Text textAlign="center" fontSize={Math.floor(props.dimension) / 2}>
+      <Text
+        textAlign="center"
+        fontSize={Math.floor(props.dimension) / 2}
+        color="#212121">
         H
       </Text>
     </View>

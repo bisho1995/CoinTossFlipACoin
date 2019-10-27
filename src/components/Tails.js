@@ -6,7 +6,10 @@ import Text from './Text';
 const Tails = props => (
   <Coin {...props}>
     <View>
-      <Text textAlign="center" fontSize={Math.floor(props.dimension) / 2}>
+      <Text
+        textAlign="center"
+        fontSize={Math.floor(props.dimension) / 2}
+        color="#212121">
         T
       </Text>
     </View>
