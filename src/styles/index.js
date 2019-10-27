@@ -1,5 +1,5 @@
 import spacing from './spacing';
 import common from './common';
-import colors from './colors';
+import yellowTheme from './theme/yellow';
 
-export {spacing, colors, common};
+export {spacing, yellowTheme, common};
