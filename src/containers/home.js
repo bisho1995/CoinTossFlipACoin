@@ -61,16 +61,11 @@ const Home = ({colors, ...props}) => {
         <Row style={{flex: 1}}>
           <View style={styles.margin}>
             <Row style={{display: 'flex', justifyContent: 'space-between'}}>
-              <Text width="auto" fontSize={30} marginLeft={spacing.margin}>
+              <Text
+                textAlign="center"
+                fontSize={30}
+                marginLeft={spacing.margin}>
                 Flip A Coin
-              </Text>
-              <Text width="auto" marginRight={spacing.margin} marginTop={10}>
-                <Icon
-                  active
-                  name="menu"
-                  style={{color: colors.secondary}}
-                  onPress={() => props.navigation.toggleDrawer()}
-                />
               </Text>
             </Row>
           </View>
@@ -123,11 +118,6 @@ const Home = ({colors, ...props}) => {
       </View>
     </Container>
   );
-};
-
-Home.navigationOptions = {
-  drawerLabel: 'Home',
-  drawerIcon: () => <Icon active name="home" />,
 };
 
 export default UseTheme(({consumer: {colors: c}, ...props}) => (
