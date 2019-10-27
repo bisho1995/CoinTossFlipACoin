@@ -4,7 +4,7 @@ import App from './containers/index';
 import {store, persistor} from './store';
 import {Provider, connect} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-
+import yellowTheme from './styles/theme/yellow';
 class MyApp extends React.PureComponent {
   render() {
     const {colors} = this.props;

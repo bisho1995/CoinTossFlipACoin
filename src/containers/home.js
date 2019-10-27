@@ -129,8 +129,6 @@ Home.navigationOptions = {
   drawerIcon: () => <Icon active name="home" />,
 };
 
-export default memo(
-  UseTheme(({consumer: {colors: c}, ...props}) => (
-    <Home colors={c} {...props} />
-  )),
-);
+export default UseTheme(({consumer: {colors: c}, ...props}) => (
+  <Home colors={c} {...props} />
+));

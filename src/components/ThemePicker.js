@@ -1,24 +1,35 @@
 import React from 'react';
-import {Row, View} from 'native-base';
+import {Row} from 'native-base';
+import {connect} from 'react-redux';
 import Circle from './Circle';
 
-const ThemePicker = ({style, ...props}) => (
+const ThemePicker = ({style, setYellowTheme, setDarkTheme, ...props}) => (
   <Row style={{justifyContent: 'center', marginTop: 80, ...style}} {...props}>
     <Circle
       dimension={20}
       marginLeft={10}
       marginRight={10}
       color="#FBC02D"
-      onPress={() => console.log('set theme yellow')}
+      onPress={setYellowTheme}
     />
     <Circle
       dimension={20}
       marginLeft={10}
       marginRight={10}
       color="#000"
-      onPress={() => console.log('set theme dark')}
+      onPress={setDarkTheme}
     />
   </Row>
 );
 
-export default ThemePicker;
+const mapDispatchToProps = dispatch => {
+  return {
+    setYellowTheme: () => dispatch({type: 'YELLOW'}),
+    setDarkTheme: () => dispatch({type: 'DARK'}),
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ThemePicker);
