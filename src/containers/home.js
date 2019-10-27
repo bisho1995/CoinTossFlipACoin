@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, memo} from 'react';
 import {StyleSheet, StatusBar} from 'react-native';
 import {Container, Card, CardItem, Body, Row, Button, Icon} from 'native-base';
 import {Tail, Head, View, Text} from '../components';
-import {colors, spacing} from '../styles';
+import {spacing} from '../styles';
 import commonStyles from '../styles/common';
 import {dimensions} from '../utils/utils';
+import UseTheme from '../context/UseTheme';
 
 const {width, height} = dimensions;
 
@@ -15,38 +16,37 @@ const margin = {
   marginBottom: 10,
 };
 
-const styles = StyleSheet.create({
-  containerStyle: {
-    ...StyleSheet.absoluteFill,
-    ...commonStyles.flexColumn,
-    backgroundColor: colors.primary,
-    justifyContent: 'space-around',
-  },
-  coinsWrapper: {
-    justifyContent: 'center',
-    width: '100%',
-    height: dim,
-    backgroundColor: colors.primary,
-  },
-  margin,
-  flipBtn: {
-    width: '100%',
-    maxWidth: 200,
-    backgroundColor: colors.secondary,
-    paddingTop: 30,
-    paddingBottom: 30,
-    borderRadius: 8,
-  },
-  footerSection: {
-    ...commonStyles.flexColumnCentered,
-    ...margin,
-    justifyContent: 'space-around',
-    paddingBottom: 10,
-    paddingTop: 10,
-  },
-});
-
-const Home = props => {
+const Home = ({colors, ...props}) => {
+  const styles = StyleSheet.create({
+    containerStyle: {
+      ...StyleSheet.absoluteFill,
+      ...commonStyles.flexColumn,
+      backgroundColor: colors.primary,
+      justifyContent: 'space-around',
+    },
+    coinsWrapper: {
+      justifyContent: 'center',
+      width: '100%',
+      height: dim,
+      backgroundColor: colors.primary,
+    },
+    margin,
+    flipBtn: {
+      width: '100%',
+      maxWidth: 200,
+      backgroundColor: colors.secondary,
+      paddingTop: 30,
+      paddingBottom: 30,
+      borderRadius: 8,
+    },
+    footerSection: {
+      ...commonStyles.flexColumnCentered,
+      ...margin,
+      justifyContent: 'space-around',
+      paddingBottom: 10,
+      paddingTop: 10,
+    },
+  });
   const [rand, setRand] = useState(1);
 
   return (
@@ -127,4 +127,4 @@ Home.navigationOptions = {
   drawerIcon: () => <Icon active name="home" />,
 };
 
-export default Home;
+export default memo(UseTheme(({consumer: {colors: c}}) => <Home colors={c} />));
