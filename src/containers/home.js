@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.secondary,
     paddingTop: 30,
     paddingBottom: 30,
+    borderRadius: 8,
   },
   footerSection: {
     ...commonStyles.flexColumnCentered,
@@ -61,9 +62,7 @@ const Home = props => {
               <Text width="auto" fontSize={30} marginLeft={spacing.margin}>
                 Flip A Coin
               </Text>
-              <Text
-                width="auto"
-                style={{marginRight: spacing.margin, marginTop: 10}}>
+              <Text width="auto" marginRight={spacing.margin} marginTop={10}>
                 <Icon
                   active
                   name="menu"
@@ -93,7 +92,10 @@ const Home = props => {
               </CardItem>
               <CardItem style={{backgroundColor: colors.primary}}>
                 <Body style={{backgroundColor: colors.primary}}>
-                  <Text fontSize={30} textAlign="center">
+                  <Text
+                    fontSize={30}
+                    textAlign="center"
+                    color={colors.secondaryText}>
                     It's a {rand % 2 === 0 ? 'tail' : 'head'}
                   </Text>
                 </Body>
@@ -107,7 +109,7 @@ const Home = props => {
               <Button
                 style={styles.flipBtn}
                 onPress={() => setRand(Math.floor(Math.random() * 10 + 1))}>
-                <Text textAlign="center" fontSize={25}>
+                <Text textAlign="center" fontSize={25} color="#fff">
                   TOSS !
                 </Text>
               </Button>
