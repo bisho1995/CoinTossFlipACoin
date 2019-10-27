@@ -1,5 +1,5 @@
 import yellowTheme from '../styles/theme/yellow';
-
+import darkTheme from '../styles/theme/dark';
 // Initial State
 const initialState = {
   theme: yellowTheme,
@@ -14,8 +14,7 @@ const rootReducer = (state = initialState, action) => {
       };
     case 'DARK':
       return {
-        ...state,
-        theme: 'DARK',
+        theme: darkTheme,
       };
     case 'VIOLET':
       return {

@@ -6,6 +6,7 @@ import {spacing} from '../styles';
 import commonStyles from '../styles/common';
 import {dimensions} from '../utils/utils';
 import UseTheme from '../context/UseTheme';
+import ThemePicker from '../components/ThemePicker';
 
 const {width, height} = dimensions;
 
@@ -40,9 +41,10 @@ const Home = ({colors, ...props}) => {
       borderRadius: 8,
     },
     footerSection: {
-      ...commonStyles.flexColumnCentered,
       ...margin,
-      justifyContent: 'space-around',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
       paddingBottom: 10,
       paddingTop: 10,
     },
@@ -114,7 +116,7 @@ const Home = ({colors, ...props}) => {
                 </Text>
               </Button>
             </View>
-            <Text textAlign="center">Themes</Text>
+            <ThemePicker />
           </View>
         </Row>
       </View>
