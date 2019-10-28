@@ -1,8 +1,7 @@
-import yellowTheme from '../styles/theme/yellow';
-import darkTheme from '../styles/theme/dark';
+import {YellowTheme, DarkTheme, PurpleTheme} from '../styles/theme';
 // Initial State
 const initialState = {
-  theme: yellowTheme,
+  theme: YellowTheme,
 };
 // Reducers (Modifies The State And Returns A New State)
 const rootReducer = (state = initialState, action) => {
@@ -10,16 +9,15 @@ const rootReducer = (state = initialState, action) => {
     // Logged In
     case 'YELLOW':
       return {
-        theme: yellowTheme,
+        theme: YellowTheme,
       };
     case 'DARK':
       return {
-        theme: darkTheme,
+        theme: DarkTheme,
       };
     case 'VIOLET':
       return {
-        ...state,
-        theme: 'VIOLET',
+        theme: PurpleTheme,
       };
     default: {
       return state;
