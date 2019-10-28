@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import CoinStyle from '../styles/coin';
 
 const StyledCoin = styled.View`
   width: ${props => props.dimension};
@@ -9,7 +10,9 @@ const StyledCoin = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: #e0e0e0;
+  background: ${CoinStyle.background};
+  border-color: ${CoinStyle.color};
+  border-width: 10;
 `;
 
 const Coin = ({children, ...props}) => (
