@@ -1,5 +1,18 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import {YellowTheme, DarkTheme, PurpleTheme} from '../styles/theme';
-// Initial State
+import {store} from '../store';
+
+(async () => {
+  try {
+    const stateStr = await AsyncStorage.getItem('state');
+    const state = JSON.parse(stateStr);
+
+    store.dispatch({type: 'REHYDRATE', value: state});
+  } catch (err) {
+    console.log(err);
+  }
+})();
+
 const initialState = {
   theme: YellowTheme,
 };
@@ -18,6 +31,11 @@ const rootReducer = (state = initialState, action) => {
     case 'VIOLET':
       return {
         theme: PurpleTheme,
+      };
+    case 'REHYDRATE':
+      console.log('Rehydrating the redux state with ', action.value);
+      return {
+        ...action.value,
       };
     default: {
       return state;

@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import {createStore, applyMiddleware} from 'redux';
 import {logger} from 'redux-logger';
-import thunk from 'redux-thunk';
 import {persistStore, persistReducer} from 'redux-persist';
 
 import rootReducer from './reducers/rootReducer';
@@ -17,7 +16,15 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-const store = createStore(persistedReducer, applyMiddleware(logger, thunk));
+const store = createStore(persistedReducer, applyMiddleware(logger));
+
+store.subscribe(async () => {
+  try {
+    await AsyncStorage.setItem('state', JSON.stringify(store.getState()));
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 const persistor = persistStore(store);
 
