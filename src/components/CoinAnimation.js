@@ -59,12 +59,27 @@ class CoinAnimation extends React.Component {
     };
 
     return (
-      <Animated.View style={{width: '100%'}}>
-        <Row style={style}>
+      <Animated.View
+        style={{
+          width: dim,
+          height: dim,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+        }}>
+        <Row
+          style={{
+            ...style,
+            width: '100%',
+            flex: 1,
+          }}>
           <Animated.View
             style={{
               ...commonProps,
               transform: [{rotateY: spinTail}],
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
               zIndex: 2,
             }}>
             <Tail dimension={dim} />

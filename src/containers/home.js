@@ -53,6 +53,10 @@ const Home = ({colors}) => {
       paddingBottom: 10,
       paddingTop: 10,
     },
+    sectionPadding: {
+      paddingTop: 20,
+      paddingBottom: 20,
+    },
   });
   const [rand, setRand] = useState(0);
   const [message, setMessage] = useState(null);
@@ -96,7 +100,11 @@ const Home = ({colors}) => {
           barStyle="light-content"
         />
         <View style={styles.containerStyle}>
-          <Row style={{flex: 1}}>
+          <Row
+            style={{
+              ...styles.sectionPadding,
+              flex: 1,
+            }}>
             <View style={styles.margin}>
               <Row style={{display: 'flex', justifyContent: 'space-between'}}>
                 <Text
@@ -109,19 +117,31 @@ const Home = ({colors}) => {
               </Row>
             </View>
           </Row>
-          <Row style={{flex: 6}}>
+          <Row
+            style={{
+              ...styles.sectionPadding,
+              flex: 6,
+            }}>
             <View style={{...commonStyles.flexRowCentered, ...styles.margin}}>
               <Card
                 style={{
                   backgroundColor: colors.primary,
                   width: dim,
+                  paddingTop: 10,
+                  paddingBottom: 10
                 }}>
                 <CardItem style={{backgroundColor: colors.primary}}>
-                  <Body style={{backgroundColor: colors.primary}}>
+                  <Body
+                    style={{
+                      backgroundColor: colors.primary,
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                    }}>
                     <CoinAnimation
                       key={rand}
                       style={styles.coinsWrapper}
-                      dim={dim - 40}
+                      dim={Math.min(dim - 40, 300)}
                       turns={rand}
                     />
                   </Body>
@@ -139,12 +159,16 @@ const Home = ({colors}) => {
               </Card>
             </View>
           </Row>
-          <Row style={{flex: 2}}>
+          <Row
+            style={{
+              ...styles.sectionPadding,
+              flex: 2,
+            }}>
             <View style={styles.footerSection}>
               <View style={commonStyles.flexRowCentered}>
                 <Button style={styles.flipBtn} onPress={handleFlip}>
                   <Text textAlign="center" fontSize={25} color="#fff">
-                    TOSS !
+                    TOSS
                   </Text>
                 </Button>
               </View>
