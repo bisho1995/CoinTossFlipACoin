@@ -41,8 +41,6 @@ const Loading = () => {
     outputRange: ['0deg', '360deg'],
   });
 
-  console.log(spin);
-
   return (
     <Modal animationType="fade" transparent={false} visible={true}>
       <View style={styles.wrapper}>

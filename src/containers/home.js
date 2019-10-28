@@ -1,13 +1,14 @@
 import React, {useState, memo, useEffect} from 'react';
 import {StyleSheet, StatusBar} from 'react-native';
 import {Container, Card, CardItem, Body, Row, Button} from 'native-base';
-import {Tail, Head, View, Text} from '../components';
+import {View, Text} from '../components';
 import {spacing} from '../styles';
 import commonStyles from '../styles/common';
 import {dimensions} from '../utils/utils';
 import UseTheme from '../context/UseTheme';
 import ThemePicker from '../components/ThemePicker';
 import Loading from '../components/loading';
+import CoinAnimation from '../components/CoinAnimation';
 
 const {width, height} = dimensions;
 
@@ -89,13 +90,11 @@ const Home = ({colors}) => {
                 }}>
                 <CardItem style={{backgroundColor: colors.primary}}>
                   <Body style={{backgroundColor: colors.primary}}>
-                    <Row style={styles.coinsWrapper}>
-                      {rand % 2 === 0 ? (
-                        <Tail dimension={dim - 40} />
-                      ) : (
-                        <Head dimension={dim - 40} />
-                      )}
-                    </Row>
+                    <CoinAnimation
+                      style={styles.coinsWrapper}
+                      dim={dim - 40}
+                      showHead={rand % 2 === 0}
+                    />
                   </Body>
                 </CardItem>
                 <CardItem style={{backgroundColor: colors.primary}}>
