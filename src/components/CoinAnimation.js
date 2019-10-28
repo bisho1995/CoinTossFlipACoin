@@ -33,7 +33,6 @@ class CoinAnimation extends React.Component {
 
   render() {
     const {currTurns} = this.state;
-    console.log('render', currTurns);
     const {style, dim} = this.props;
     const spinHead = this.spinValue.interpolate({
       inputRange: [0, 1],

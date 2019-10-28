@@ -9,6 +9,7 @@ import UseTheme from '../context/UseTheme';
 import ThemePicker from '../components/ThemePicker';
 import Loading from '../components/loading';
 import CoinAnimation from '../components/CoinAnimation';
+import Sound from 'react-native-sound';
 
 const {width, height} = dimensions;
 
@@ -18,6 +19,8 @@ const margin = {
   marginTop: 10,
   marginBottom: 10,
 };
+
+Sound.setCategory('Playback');
 
 const Home = ({colors}) => {
   const styles = StyleSheet.create({
@@ -56,6 +59,12 @@ const Home = ({colors}) => {
   const [loading, setLoading] = useState(true);
   const [isCalculating, setIsCalculating] = useState(false);
 
+  const coinFlipAudio = new Sound('coinflip.mp3', Sound.MAIN_BUNDLE, error => {
+    if (error) {
+      console.log('failed to load the sound', error);
+    }
+  });
+
   const handleFlip = () => {
     if (!isCalculating) {
       setIsCalculating(true);
@@ -63,28 +72,21 @@ const Home = ({colors}) => {
       while (rand === newRand) {
         newRand = Math.floor(Math.random() * 10 + 1);
       }
+      coinFlipAudio.play();
       setMessage(null);
       setRand(newRand);
       setTimeout(() => {
-        console.log(
-          'rand = ' +
-            rand +
-            ' message = ' +
-            "It's a " +
-            (newRand % 2 !== 0 ? 'head' : 'tails'),
-        );
-        setMessage("It's a " + (newRand % 2 !== 0 ? 'head' : 'tails'));
+        setMessage(newRand % 2 !== 0 ? 'HEAD' : 'TAIL');
         setIsCalculating(false);
       }, newRand * (__DEV__ ? 1000 : 400));
     } else {
-      ToastAndroid.show('Already flipping', ToastAndroid.SHORT);
+      ToastAndroid.show('Hold up', ToastAndroid.SHORT);
     }
   };
 
   useEffect(() => {
     setLoading(false);
   }, []);
-  console.log({rand});
   return (
     <>
       {loading ? <Loading /> : null}
