@@ -128,7 +128,7 @@ const Home = ({colors}) => {
                   backgroundColor: colors.primary,
                   width: dim,
                   paddingTop: 10,
-                  paddingBottom: 10
+                  paddingBottom: 10,
                 }}>
                 <CardItem style={{backgroundColor: colors.primary}}>
                   <Body

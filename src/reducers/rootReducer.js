@@ -1,17 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
 import {YellowTheme, DarkTheme, PurpleTheme} from '../styles/theme';
-import {store} from '../store';
-
-(async () => {
-  try {
-    const stateStr = await AsyncStorage.getItem('state');
-    const state = JSON.parse(stateStr);
-
-    store.dispatch({type: 'REHYDRATE', value: state});
-  } catch (err) {
-    console.log(err);
-  }
-})();
 
 const initialState = {
   theme: YellowTheme,
