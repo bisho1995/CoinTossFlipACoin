@@ -15,6 +15,7 @@ export default memo(
       margin-right: ${({marginRight}) => (marginRight ? marginRight : 0)};
       margin-top: ${({marginTop}) => (marginTop ? marginTop : 0)};
       margin-bottom: ${({marginBottom}) => (marginBottom ? marginBottom : 0)};
+      font-family: 'Poppins';
     `;
 
     return <StyledText {...props} />;

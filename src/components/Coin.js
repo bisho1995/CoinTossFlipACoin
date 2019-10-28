@@ -13,6 +13,7 @@ const StyledCoin = styled.View`
   background: ${CoinStyle.background};
   border-color: ${CoinStyle.color};
   border-width: 10;
+  font-family: 'Poppins';
 `;
 
 const Coin = ({children, ...props}) => (
