@@ -3,7 +3,7 @@ import {Animated, Easing, StyleSheet} from 'react-native';
 import {Row} from 'native-base';
 import Head from './Head';
 import Tail from './Tails';
-
+import {connect} from 'react-redux';
 class CoinAnimation extends React.Component {
   spinValue = new Animated.Value(0);
   state = {
@@ -17,12 +17,15 @@ class CoinAnimation extends React.Component {
   }
 
   spinFn = () => {
-    const {turns} = this.props;
+    const {
+      turns,
+      animationSpeed: {dev: devSpeed, prod: prodSpeed} = {},
+    } = this.props;
     this.setState(({currTurns}) => ({currTurns: currTurns + 1}));
     this.spinValue.setValue(0);
     Animated.timing(this.spinValue, {
       toValue: 1,
-      duration: __DEV__ ? 1000 : 400,
+      duration: __DEV__ ? devSpeed : prodSpeed,
       easing: Easing.linear,
     }).start(() => {
       if (this.state.currTurns < turns) {
@@ -98,4 +101,7 @@ class CoinAnimation extends React.Component {
   }
 }
 
-export default CoinAnimation;
+const mapStateToProps = ({animationSpeed}) => ({animationSpeed});
+const WrappedCoinAnimation = connect(mapStateToProps)(CoinAnimation);
+
+export default WrappedCoinAnimation;

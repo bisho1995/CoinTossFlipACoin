@@ -2,7 +2,6 @@ import React, {useState, memo, useEffect} from 'react';
 import {StyleSheet, StatusBar, ToastAndroid} from 'react-native';
 import {Container, Card, CardItem, Body, Row, Button} from 'native-base';
 import {View, Text} from '../components';
-import {spacing} from '../styles';
 import commonStyles from '../styles/common';
 import {dimensions} from '../utils/utils';
 import UseTheme from '../context/UseTheme';
@@ -10,6 +9,7 @@ import ThemePicker from '../components/ThemePicker';
 import Loading from '../components/loading';
 import CoinAnimation from '../components/CoinAnimation';
 import Sound from 'react-native-sound';
+import {connect} from 'react-redux';
 
 const {width, height} = dimensions;
 
@@ -22,7 +22,10 @@ const margin = {
 
 Sound.setCategory('Playback');
 
-const Home = ({colors}) => {
+const Home = ({
+  colors,
+  animationSpeed: {dev: devSpeed, prod: prodSpeed} = {},
+}) => {
   const styles = StyleSheet.create({
     containerStyle: {
       ...StyleSheet.absoluteFill,
@@ -83,7 +86,8 @@ const Home = ({colors}) => {
       setTimeout(() => {
         setMessage(newRand % 2 !== 0 ? 'HEAD' : 'TAIL');
         setIsCalculating(false);
-      }, newRand * (__DEV__ ? 1000 : 400));
+        coinFlipAudio.stop();
+      }, newRand * (__DEV__ ? devSpeed : prodSpeed));
     } else {
       ToastAndroid.show('Hold up', ToastAndroid.SHORT);
     }
@@ -171,8 +175,11 @@ const Home = ({colors}) => {
   );
 };
 
+const mapStateToProps = ({animationSpeed}) => ({animationSpeed});
+const WrappedHome = connect(mapStateToProps)(Home);
+
 export default memo(
   UseTheme(({consumer: {colors: c}, ...props}) => (
-    <Home colors={c} {...props} />
+    <WrappedHome colors={c} {...props} />
   )),
 );
