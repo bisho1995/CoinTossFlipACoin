@@ -1,65 +1,87 @@
-import React, {useEffect, memo} from 'react';
+import React from 'react';
 import {Animated, Easing, StyleSheet} from 'react-native';
 import {Row} from 'native-base';
 import Head from './Head';
 import Tail from './Tails';
 
-const CoinAnimation = ({style, dim, showHead}) => {
-  const spinValue = new Animated.Value(0);
-  const spinFn = () => {
-    spinValue.setValue(0);
-    Animated.timing(spinValue, {
+class CoinAnimation extends React.Component {
+  spinValue = new Animated.Value(0);
+  state = {
+    currTurns: 0,
+  };
+
+  componentDidMount() {
+    if (this.props.turns > 0) {
+      this.spinFn();
+    }
+  }
+
+  spinFn = () => {
+    const {turns} = this.props;
+    this.setState(({currTurns}) => ({currTurns: currTurns + 1}));
+    this.spinValue.setValue(0);
+    Animated.timing(this.spinValue, {
       toValue: 1,
-      duration: __DEV__ ? 2000 : 800,
+      duration: __DEV__ ? 1000 : 400,
       easing: Easing.linear,
-    }).start(spinFn);
+    }).start(() => {
+      if (this.state.currTurns < turns) {
+        this.spinFn();
+      }
+    });
   };
 
-  useEffect(() => {
-    spinFn();
-  });
+  render() {
+    const {currTurns} = this.state;
+    console.log('render', currTurns);
+    const {style, dim} = this.props;
+    const spinHead = this.spinValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '180deg'],
+    });
+    const spinHeadZ = this.spinValue.interpolate({
+      inputRange: [0, 0.49, 0.5, 1],
+      outputRange: [
+        currTurns % 2 === 0 ? 3 : 1,
+        currTurns % 2 === 0 ? 3 : 1,
+        currTurns % 2 === 0 ? 1 : 3,
+        currTurns % 2 === 0 ? 1 : 3,
+      ],
+    });
 
-  const spinHead = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
-  const spinHeadZ = spinValue.interpolate({
-    inputRange: [0, 0.24, 0.25, 0.74, 0.75],
-    outputRange: [3, 3, 1, 1, 3],
-  });
+    const spinTail = this.spinValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['180deg', '360deg'],
+    });
 
-  const spinTail = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['180deg', '540deg'],
-  });
+    const commonProps = {
+      ...StyleSheet.absoluteFill,
+      opacity: 1,
+    };
 
-  const commonProps = {
-    ...StyleSheet.absoluteFill,
-    opacity: 1,
-  };
-
-  return (
-    <Animated.View style={{width: '100%'}}>
-      <Row style={style}>
-        <Animated.View
-          style={{
-            ...commonProps,
-            transform: [{rotateY: spinTail}],
-            zIndex: 2,
-          }}>
-          <Tail dimension={dim} />
-        </Animated.View>
-        <Animated.View
-          style={{
-            ...commonProps,
-            transform: [{rotateY: spinHead}],
-            zIndex: spinHeadZ,
-          }}>
-          <Head dimension={dim} />
-        </Animated.View>
-      </Row>
-    </Animated.View>
-  );
-};
+    return (
+      <Animated.View style={{width: '100%'}}>
+        <Row style={style}>
+          <Animated.View
+            style={{
+              ...commonProps,
+              transform: [{rotateY: spinTail}],
+              zIndex: 2,
+            }}>
+            <Tail dimension={dim} />
+          </Animated.View>
+          <Animated.View
+            style={{
+              ...commonProps,
+              transform: [{rotateY: spinHead}],
+              zIndex: spinHeadZ,
+            }}>
+            <Head dimension={dim} />
+          </Animated.View>
+        </Row>
+      </Animated.View>
+    );
+  }
+}
 
 export default CoinAnimation;

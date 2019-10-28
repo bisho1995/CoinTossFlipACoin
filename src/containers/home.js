@@ -1,5 +1,5 @@
 import React, {useState, memo, useEffect} from 'react';
-import {StyleSheet, StatusBar} from 'react-native';
+import {StyleSheet, StatusBar, ToastAndroid} from 'react-native';
 import {Container, Card, CardItem, Body, Row, Button} from 'native-base';
 import {View, Text} from '../components';
 import {spacing} from '../styles';
@@ -51,14 +51,40 @@ const Home = ({colors}) => {
       paddingTop: 10,
     },
   });
-  const [rand, setRand] = useState(1);
+  const [rand, setRand] = useState(0);
+  const [message, setMessage] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(loading);
+  const [isCalculating, setIsCalculating] = useState(false);
+
+  const handleFlip = () => {
+    if (!isCalculating) {
+      setIsCalculating(true);
+      let newRand = Math.floor(Math.random() * 10 + 1);
+      while (rand === newRand) {
+        newRand = Math.floor(Math.random() * 10 + 1);
+      }
+      setMessage(null);
+      setRand(newRand);
+      setTimeout(() => {
+        console.log(
+          'rand = ' +
+            rand +
+            ' message = ' +
+            "It's a " +
+            (newRand % 2 !== 0 ? 'head' : 'tails'),
+        );
+        setMessage("It's a " + (newRand % 2 !== 0 ? 'head' : 'tails'));
+        setIsCalculating(false);
+      }, newRand * (__DEV__ ? 1000 : 400));
+    } else {
+      ToastAndroid.show('Already flipping', ToastAndroid.SHORT);
+    }
+  };
 
   useEffect(() => {
     setLoading(false);
   }, []);
-
+  console.log({rand});
   return (
     <>
       {loading ? <Loading /> : null}
@@ -91,9 +117,10 @@ const Home = ({colors}) => {
                 <CardItem style={{backgroundColor: colors.primary}}>
                   <Body style={{backgroundColor: colors.primary}}>
                     <CoinAnimation
+                      key={rand}
                       style={styles.coinsWrapper}
                       dim={dim - 40}
-                      showHead={rand % 2 === 0}
+                      turns={rand}
                     />
                   </Body>
                 </CardItem>
@@ -103,7 +130,7 @@ const Home = ({colors}) => {
                       fontSize={30}
                       textAlign="center"
                       color={colors.secondaryText}>
-                      It's a {rand % 2 === 0 ? 'tail' : 'head'}
+                      {message}
                     </Text>
                   </Body>
                 </CardItem>
@@ -113,9 +140,7 @@ const Home = ({colors}) => {
           <Row style={{flex: 2}}>
             <View style={styles.footerSection}>
               <View style={commonStyles.flexRowCentered}>
-                <Button
-                  style={styles.flipBtn}
-                  onPress={() => setRand(Math.floor(Math.random() * 10 + 1))}>
+                <Button style={styles.flipBtn} onPress={handleFlip}>
                   <Text textAlign="center" fontSize={25} color="#fff">
                     TOSS !
                   </Text>
