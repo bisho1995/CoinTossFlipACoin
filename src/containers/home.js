@@ -44,6 +44,7 @@ const Home = ({colors}) => {
       paddingTop: 30,
       paddingBottom: 30,
       borderRadius: 8,
+      elevation: 5,
     },
     footerSection: {
       ...margin,
@@ -103,32 +104,21 @@ const Home = ({colors}) => {
           <Row
             style={{
               ...styles.sectionPadding,
-              flex: 1,
-            }}>
-            <View style={styles.margin}>
-              <Row style={{display: 'flex', justifyContent: 'space-between'}}>
-                <Text
-                  textAlign="center"
-                  fontSize={30}
-                  style={{fontWeight: 'bold'}}
-                  marginLeft={spacing.margin}>
-                  Flip A Coin
-                </Text>
-              </Row>
-            </View>
-          </Row>
-          <Row
-            style={{
-              ...styles.sectionPadding,
               flex: 6,
             }}>
-            <View style={{...commonStyles.flexRowCentered, ...styles.margin}}>
+            <View
+              style={{
+                ...commonStyles.flexRowCentered,
+                ...styles.margin,
+                maxHeight: 450,
+              }}>
               <Card
                 style={{
                   backgroundColor: colors.primary,
                   width: dim,
                   paddingTop: 10,
                   paddingBottom: 10,
+                  borderRadius: 20,
                 }}>
                 <CardItem style={{backgroundColor: colors.primary}}>
                   <Body
@@ -162,7 +152,7 @@ const Home = ({colors}) => {
           <Row
             style={{
               ...styles.sectionPadding,
-              flex: 2,
+              flex: 3,
             }}>
             <View style={styles.footerSection}>
               <View style={commonStyles.flexRowCentered}>

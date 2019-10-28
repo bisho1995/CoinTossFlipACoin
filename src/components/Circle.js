@@ -9,6 +9,7 @@ const Circle = styled.View`
   background-color: ${({color}) => color};
   margin-left: ${({marginLeft}) => marginLeft};
   margin-right: ${({marginRight}) => marginRight};
+  elevation: 2;
 `;
 
 export default ({dimension, color, marginLeft, marginRight, ...props}) => (

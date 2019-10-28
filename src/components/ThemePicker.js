@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import Circle from './Circle';
 import {YellowTheme, DarkTheme, PurpleTheme} from '../styles/theme';
 
+const margin = 20;
+const dimension = 30;
+
 const ThemePicker = ({
   style,
   setYellowTheme,
@@ -13,23 +16,23 @@ const ThemePicker = ({
 }) => (
   <Row style={{justifyContent: 'center', marginTop: 80, ...style}} {...props}>
     <Circle
-      dimension={20}
-      marginLeft={10}
-      marginRight={10}
+      dimension={dimension}
+      marginLeft={margin}
+      marginRight={margin}
       color={YellowTheme.primary}
       onPress={setYellowTheme}
     />
     <Circle
-      dimension={20}
-      marginLeft={10}
-      marginRight={10}
+      dimension={dimension}
+      marginLeft={margin}
+      marginRight={margin}
       color={DarkTheme.primary}
       onPress={setDarkTheme}
     />
     <Circle
-      dimension={20}
-      marginLeft={10}
-      marginRight={10}
+      dimension={dimension}
+      marginLeft={margin}
+      marginRight={margin}
       color={PurpleTheme.primary}
       onPress={setVioletTheme}
     />
