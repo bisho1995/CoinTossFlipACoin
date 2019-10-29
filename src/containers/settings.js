@@ -1,8 +1,8 @@
 import React from 'react';
 import Text from '../components/Text';
-import View from '../components/View';
-import {StyleSheet} from 'react-native';
-import {Container, Header, Body} from 'native-base';
+
+import {StyleSheet, ScrollView} from 'react-native';
+import {View, Container, Header, Body, Card, CardItem, Row} from 'native-base';
 import {connect} from 'react-redux';
 
 const styles = StyleSheet.create({
@@ -24,6 +24,56 @@ const Settings = ({colors}) => (
         </View>
       </Body>
     </Header>
+    <Container
+      padder
+      style={{
+        flex: 1,
+        paddingLeft: 10,
+        paddingRight: 10,
+        backgroundColor: colors.darkPrimary,
+      }}>
+      <ScrollView alwaysBounceVertical>
+        <Card style={{backgroundColor: colors.lightPrimary}}>
+          <CardItem
+            style={{
+              backgroundColor: colors.lightPrimary,
+              display: 'flex',
+              flexDirection: 'column',
+            }}>
+            <View style={{flex: 1, width: '100%'}}>
+              <Row style={{flex: 1}}>
+                <View style={{flex: 1}}>
+                  <Text style={{fontWeight: 'bold'}}>Volume</Text>
+                </View>
+                <View>
+                  <Text>toggle</Text>
+                </View>
+              </Row>
+            </View>
+            <View style={{flex: 1, width: '100%'}}>
+              <Row>
+                <View style={{flex: 1}}>
+                  <Text>Theme</Text>
+                </View>
+                <View>
+                  <Text>toggle</Text>
+                </View>
+              </Row>
+            </View>
+            <View style={{flex: 1, width: '100%'}}>
+              <Row>
+                <View style={{flex: 1}}>
+                  <Text>Speed</Text>
+                </View>
+                <View>
+                  <Text>toggle</Text>
+                </View>
+              </Row>
+            </View>
+          </CardItem>
+        </Card>
+      </ScrollView>
+    </Container>
   </Container>
 );
 
