@@ -1,10 +1,10 @@
 import React from 'react';
 import {Text, View} from 'native-base';
 
-const Statistics = () => (
+const Settings = () => (
   <View>
-    <Text>Stats</Text>
+    <Text>Settings</Text>
   </View>
 );
 
-export default Statistics;
+export default Settings;
