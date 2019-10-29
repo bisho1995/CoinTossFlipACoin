@@ -1,10 +1,32 @@
 import React from 'react';
-import {Text, View} from 'native-base';
+import Text from '../components/Text';
+import View from '../components/View';
+import {StyleSheet} from 'react-native';
+import {Container, Header, Body} from 'native-base';
+import {connect} from 'react-redux';
 
-const Settings = () => (
-  <View>
-    <Text>Settings</Text>
-  </View>
+const styles = StyleSheet.create({
+  body: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+});
+
+const Settings = ({colors}) => (
+  <Container>
+    <Header style={{backgroundColor: colors.darkPrimary}}>
+      <Body style={styles.body}>
+        <View>
+          <Text textAlign="center" color={colors.secondaryText} fontSize={20}>
+            Settings
+          </Text>
+        </View>
+      </Body>
+    </Header>
+  </Container>
 );
 
-export default Settings;
+const mapStateToProps = ({theme}) => ({colors: theme});
+
+export default connect(mapStateToProps)(Settings);

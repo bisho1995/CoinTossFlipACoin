@@ -4,7 +4,6 @@ import App from './containers/index';
 import {store, persistor} from './store';
 import {Provider, connect} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 class MyApp extends React.PureComponent {
   render() {
@@ -18,14 +17,10 @@ class MyApp extends React.PureComponent {
 const mapStateToProps = ({theme}) => ({colors: theme});
 
 const CoinToss = connect(mapStateToProps)(MyApp);
-export default () => {
-  changeNavigationBarColor('#757575');
-
-  return (
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <CoinToss />
-      </PersistGate>
-    </Provider>
-  );
-};
+export default () => (
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <CoinToss />
+    </PersistGate>
+  </Provider>
+);
