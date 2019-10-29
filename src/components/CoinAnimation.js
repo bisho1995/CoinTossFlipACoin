@@ -101,7 +101,9 @@ class CoinAnimation extends React.Component {
   }
 }
 
-const mapStateToProps = ({animationSpeed}) => ({animationSpeed});
+const mapStateToProps = ({AppSettingReducer: {animationSpeed}}) => ({
+  animationSpeed,
+});
 const WrappedCoinAnimation = connect(mapStateToProps)(CoinAnimation);
 
 export default WrappedCoinAnimation;

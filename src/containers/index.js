@@ -68,6 +68,6 @@ const WithNavigation = ({theme: colors}) => {
   const Comp = createAppContainer(TabNavigator);
   return <Comp />;
 };
-const mapStateToProps = ({theme}) => ({theme});
+const mapStateToProps = ({ThemeReducer: {theme}}) => ({theme});
 
 export default connect(mapStateToProps)(WithNavigation);

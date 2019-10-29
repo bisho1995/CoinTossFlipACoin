@@ -25,6 +25,8 @@ Sound.setCategory('Playback');
 const Home = ({
   colors,
   animationSpeed: {dev: devSpeed, prod: prodSpeed} = {},
+  incrementHead,
+  incrementTail,
 }) => {
   const styles = StyleSheet.create({
     containerStyle: {
@@ -84,7 +86,13 @@ const Home = ({
       setMessage(null);
       setRand(newRand);
       setTimeout(() => {
-        setMessage(newRand % 2 !== 0 ? 'HEAD' : 'TAIL');
+        const isHead = newRand % 2 !== 0;
+        setMessage(isHead ? 'HEAD' : 'TAIL');
+        if (isHead) {
+          incrementHead();
+        } else {
+          incrementTail();
+        }
         setIsCalculating(false);
         coinFlipAudio.stop();
       }, newRand * (__DEV__ ? devSpeed : prodSpeed));
@@ -176,8 +184,21 @@ const Home = ({
   );
 };
 
-const mapStateToProps = ({animationSpeed}) => ({animationSpeed});
-const WrappedHome = connect(mapStateToProps)(Home);
+const mapStateToProps = ({AppSettingReducer: {animationSpeed}}) => ({
+  animationSpeed,
+});
+
+const mapDispatchToProps = dispatch => {
+  return {
+    incrementHead: () => dispatch({type: 'HEAD'}),
+    incrementTail: () => dispatch({type: 'TAIL'}),
+  };
+};
+
+const WrappedHome = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Home);
 
 export default memo(
   UseTheme(({consumer: {colors: c}, ...props}) => (

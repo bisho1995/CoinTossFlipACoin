@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Statistics = ({colors}) => (
+const Statistics = ({colors, head, tail}) => (
   <Container>
     <Header style={{backgroundColor: colors.darkPrimary}}>
       <Body style={styles.body}>
@@ -24,9 +24,32 @@ const Statistics = ({colors}) => (
         </View>
       </Body>
     </Header>
+    <View style={{paddingLeft: 10, paddingRight: 10}}>
+      <Text color="black">
+        Heads: {head} |{' '}
+        {head + tail > 0
+          ? parseFloat((head * 100) / (head + tail)).toFixed(2)
+          : ''}
+        %
+      </Text>
+      <Text color="black">
+        Tails: {tail} |{' '}
+        {head + tail > 0
+          ? parseFloat((tail * 100) / (head + tail)).toFixed(2)
+          : ''}
+        %
+      </Text>
+    </View>
   </Container>
 );
 
-const mapStateToProps = ({theme}) => ({colors: theme});
+const mapStateToProps = ({
+  ThemeReducer: {theme},
+  AppStateReducer: {head, tail},
+}) => ({
+  colors: theme,
+  head,
+  tail,
+});
 
 export default connect(mapStateToProps)(Statistics);

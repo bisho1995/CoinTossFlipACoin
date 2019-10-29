@@ -14,7 +14,7 @@ class MyApp extends React.PureComponent {
   }
 }
 
-const mapStateToProps = ({theme}) => ({colors: theme});
+const mapStateToProps = ({ThemeReducer: {theme}}) => ({colors: theme});
 
 const CoinToss = connect(mapStateToProps)(MyApp);
 export default () => (

@@ -77,6 +77,6 @@ const Settings = ({colors}) => (
   </Container>
 );
 
-const mapStateToProps = ({theme}) => ({colors: theme});
+const mapStateToProps = ({ThemeReducer: {theme}}) => ({colors: theme});
 
 export default connect(mapStateToProps)(Settings);

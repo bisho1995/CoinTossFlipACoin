@@ -2,13 +2,9 @@ import {YellowTheme, DarkTheme, PurpleTheme} from '../styles/theme';
 
 const initialState = {
   theme: YellowTheme,
-  animationSpeed: {
-    dev: 2000,
-    prod: 200,
-  },
 };
 
-const rootReducer = (state = initialState, action) => {
+const themeReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'YELLOW':
       return {
@@ -31,4 +27,4 @@ const rootReducer = (state = initialState, action) => {
   }
 };
 
-export default rootReducer;
+export default themeReducer;
