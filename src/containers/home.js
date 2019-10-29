@@ -119,6 +119,7 @@ const Home = ({
               <Card
                 style={{
                   backgroundColor: colors.primary,
+                  borderColor: colors.primary,
                   width: dim,
                   paddingTop: 10,
                   paddingBottom: 10,
