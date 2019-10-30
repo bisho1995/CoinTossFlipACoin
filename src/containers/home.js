@@ -40,7 +40,7 @@ const Home = ({
       justifyContent: 'center',
       width: '100%',
       height: dim,
-      backgroundColor: colors.primary,
+      backgroundColor: colors.lightPrimary,
     },
     margin,
     flipBtn: {
@@ -122,46 +122,31 @@ const Home = ({
             }}>
             <View
               style={{
-                ...commonStyles.flexRowCentered,
                 ...styles.margin,
                 maxHeight: 450,
               }}>
-              <Card
+              <Body
                 style={{
-                  backgroundColor: colors.primary,
-                  borderColor: colors.primary,
-                  width: dim,
-                  paddingTop: 10,
-                  paddingBottom: 10,
-                  borderRadius: 20,
+                  backgroundColor: colors.lightPrimary,
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'center',
                 }}>
-                <CardItem style={{backgroundColor: colors.primary}}>
-                  <Body
-                    style={{
-                      backgroundColor: colors.primary,
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justifyContent: 'center',
-                    }}>
-                    <CoinAnimation
-                      key={rand}
-                      style={styles.coinsWrapper}
-                      dim={Math.min(dim - 40, 300)}
-                      turns={rand}
-                    />
-                  </Body>
-                </CardItem>
-                <CardItem style={{backgroundColor: colors.primary}}>
-                  <Body style={{backgroundColor: colors.primary}}>
-                    <Text
-                      fontSize={30}
-                      textAlign="center"
-                      color={colors.secondaryText}>
-                      {message}
-                    </Text>
-                  </Body>
-                </CardItem>
-              </Card>
+                <CoinAnimation
+                  key={rand}
+                  style={styles.coinsWrapper}
+                  dim={Math.min(dim - 40, 300)}
+                  turns={rand}
+                />
+              </Body>
+              <Body style={{backgroundColor: colors.lightPrimary}}>
+                <Text
+                  fontSize={30}
+                  textAlign="center"
+                  color={colors.secondaryText}>
+                  {message}
+                </Text>
+              </Body>
             </View>
           </Row>
           <Row
