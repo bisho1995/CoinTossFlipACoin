@@ -1,5 +1,5 @@
 import React, {useState, memo, useEffect} from 'react';
-import {StyleSheet, StatusBar, ToastAndroid} from 'react-native';
+import {StyleSheet, StatusBar, ToastAndroid, Vibration} from 'react-native';
 import {Container, Card, CardItem, Body, Row, Button} from 'native-base';
 import {View, Text} from '../components';
 import commonStyles from '../styles/common';
@@ -25,6 +25,7 @@ Sound.setCategory('Playback');
 const Home = ({
   colors,
   animationSpeed: {dev: devSpeed, prod: prodSpeed} = {},
+  vibration,
   incrementHead,
   incrementTail,
 }) => {
@@ -76,11 +77,12 @@ const Home = ({
   });
 
   const handleFlip = () => {
+    Vibration.vibrate(vibration.duration);
     if (!isCalculating) {
       setIsCalculating(true);
-      let newRand = Math.floor(Math.random() * 10 + 1);
+      let newRand = Math.floor(Math.random() * 10 + 3);
       while (rand === newRand) {
-        newRand = Math.floor(Math.random() * 10 + 1);
+        newRand = Math.floor(Math.random() * 10 + 8);
       }
       coinFlipAudio.play();
       setMessage(null);
@@ -184,9 +186,12 @@ const Home = ({
   );
 };
 
-const mapStateToProps = ({AppSettingReducer: {animationSpeed}}) => ({
-  animationSpeed,
-});
+const mapStateToProps = ({AppSettingReducer: {animationSpeed, vibration}}) => {
+  return {
+    animationSpeed,
+    vibration,
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
