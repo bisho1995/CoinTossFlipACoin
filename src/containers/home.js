@@ -1,11 +1,11 @@
 import React, {useState, memo, useEffect} from 'react';
 import {StyleSheet, StatusBar, ToastAndroid, Vibration} from 'react-native';
-import {Container, Card, CardItem, Body, Row, Button} from 'native-base';
+import {Container, Row, Button} from 'native-base';
 import {View, Text} from '../components';
 import commonStyles from '../styles/common';
 import {dimensions} from '../utils/utils';
 import UseTheme from '../context/UseTheme';
-import ThemePicker from '../components/ThemePicker';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import Loading from '../components/loading';
 import CoinAnimation from '../components/CoinAnimation';
 import Sound from 'react-native-sound';
@@ -29,20 +29,22 @@ const Home = ({
   incrementHead,
   incrementTail,
 }) => {
+  changeNavigationBarColor(colors.darkPrimary);
+
   const styles = StyleSheet.create({
     containerStyle: {
       ...StyleSheet.absoluteFill,
       ...commonStyles.flexColumn,
-      backgroundColor: colors.lightPrimary,
+      backgroundColor: colors.backgroundColor,
       justifyContent: 'space-around',
     },
     coinsWrapper: {
-      display:'flex',
+      display: 'flex',
       flexDirection: 'row',
       justifyContent: 'center',
       width: '100%',
       height: dim,
-      backgroundColor: colors.lightPrimary,
+      backgroundColor: colors.backgroundColor,
     },
     margin,
     flipBtn: {
@@ -130,7 +132,7 @@ const Home = ({
               }}>
               <View
                 style={{
-                  backgroundColor: colors.lightPrimary,
+                  backgroundColor: colors.backgroundColor,
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'center',
@@ -145,7 +147,7 @@ const Home = ({
               </View>
               <View
                 style={{
-                  backgroundColor: colors.lightPrimary,
+                  backgroundColor: colors.backgroundColor,
                 }}>
                 <Text
                   fontSize={30}

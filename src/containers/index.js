@@ -59,7 +59,7 @@ const WithNavigation = ({theme: colors}) => {
         inactiveTintColor: 'grey',
         style: {
           paddingTop: 10,
-          backgroundColor: colors.darkPrimary,
+          backgroundColor: colors.surfaceColor,
         },
       },
     },

@@ -8,6 +8,8 @@ const colors = {
   primaryText: '#ffffff',
   secondaryText: '#ffffff',
   divider: '#BDBDBD',
+  backgroundColor: '#121212',
+  surfaceColor: '#1e1e1e',
 };
 
 export default colors;

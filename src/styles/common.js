@@ -22,7 +22,7 @@ const centerText = {
 
 const flexRowCentered = {...flexRow, ...flexCenter};
 
-const flexColumnCentered = {...flexColumn,...flexCenter};
+const flexColumnCentered = {...flexColumn, ...flexCenter};
 
 const styles = StyleSheet.create({
   flexRow,
@@ -31,6 +31,12 @@ const styles = StyleSheet.create({
   flexRowCentered,
   centerText,
   flexColumnCentered,
+  padding: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
 });
 
 export default styles;
