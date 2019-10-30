@@ -64,7 +64,7 @@ class CoinAnimation extends React.Component {
     return (
       <Animated.View
         style={{
-          width: dim,
+          width: '100%',
           height: dim,
           display: 'flex',
           flexDirection: 'row',
@@ -92,6 +92,9 @@ class CoinAnimation extends React.Component {
               ...commonProps,
               transform: [{rotateY: spinHead}],
               zIndex: spinHeadZ,
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'center',
             }}>
             <Head dimension={dim} />
           </Animated.View>

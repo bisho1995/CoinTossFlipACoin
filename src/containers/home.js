@@ -13,7 +13,7 @@ import {connect} from 'react-redux';
 
 const {width, height} = dimensions;
 
-const dim = Math.min(width, height) - 30;
+const dim = Math.min(Math.min(width, height) - 30 - 40, 300);
 
 const margin = {
   marginTop: 10,
@@ -37,6 +37,8 @@ const Home = ({
       justifyContent: 'space-around',
     },
     coinsWrapper: {
+      display:'flex',
+      flexDirection: 'row',
       justifyContent: 'center',
       width: '100%',
       height: dim,
@@ -123,36 +125,41 @@ const Home = ({
             <View
               style={{
                 ...styles.margin,
-                maxHeight: 450,
+                display: 'flex',
+                flexDirection: 'column',
               }}>
-              <Body
+              <View
                 style={{
                   backgroundColor: colors.lightPrimary,
                   display: 'flex',
-                  flexDirection: 'row',
+                  flexDirection: 'column',
                   justifyContent: 'center',
+                  minHeight: dim,
                 }}>
                 <CoinAnimation
                   key={rand}
                   style={styles.coinsWrapper}
-                  dim={Math.min(dim - 40, 300)}
+                  dim={dim}
                   turns={rand}
                 />
-              </Body>
-              <Body style={{backgroundColor: colors.lightPrimary}}>
+              </View>
+              <View
+                style={{
+                  backgroundColor: colors.lightPrimary,
+                }}>
                 <Text
                   fontSize={30}
                   textAlign="center"
                   color={colors.secondaryText}>
                   {message}
                 </Text>
-              </Body>
+              </View>
             </View>
           </Row>
           <Row
             style={{
               ...styles.sectionPadding,
-              flex: 3,
+              flex: 1,
             }}>
             <View style={styles.footerSection}>
               <View style={commonStyles.flexRowCentered}>
@@ -162,7 +169,6 @@ const Home = ({
                   </Text>
                 </Button>
               </View>
-              <ThemePicker />
             </View>
           </Row>
         </View>

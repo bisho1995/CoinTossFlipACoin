@@ -1,7 +1,7 @@
 import {YellowTheme, DarkTheme, PurpleTheme} from '../styles/theme';
 
 const initialState = {
-  theme: YellowTheme,
+  theme: DarkTheme,
 };
 
 const themeReducer = (state = initialState, action) => {
