@@ -4,7 +4,7 @@ import App from './containers/index';
 import {store, persistor} from './store';
 import {Provider, connect} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
-
+import Loading from './components/loading';
 class MyApp extends React.PureComponent {
   render() {
     const {colors} = this.props;
@@ -19,7 +19,7 @@ const mapStateToProps = ({ThemeReducer: {theme}}) => ({colors: theme});
 const CoinToss = connect(mapStateToProps)(MyApp);
 export default () => (
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    <PersistGate loading={<Loading />} persistor={persistor}>
       <CoinToss />
     </PersistGate>
   </Provider>

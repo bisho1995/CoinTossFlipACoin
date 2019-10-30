@@ -1,8 +1,8 @@
-import React, {memo, useEffect} from 'react';
+import React, {memo} from 'react';
 import View from './View';
-import {Modal, StyleSheet, Animated, Easing} from 'react-native';
+import {Modal, StyleSheet, ActivityIndicator} from 'react-native';
 import {Row} from 'native-base';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import {connect} from 'react-redux';
 
 const iconSize = 80;
 
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#292929',
   },
-  iconWrapper: {
+  activityLoaderWrapper: {
     height: iconSize + 20,
     display: 'flex',
     flexDirection: 'row',
@@ -20,39 +20,18 @@ const styles = StyleSheet.create({
   },
 });
 
-const Loading = () => {
-  const spinValue = new Animated.Value(0);
-
-  const spinFn = () => {
-    spinValue.setValue(0);
-    Animated.timing(spinValue, {
-      toValue: 1,
-      duration: 800,
-      easing: Easing.linear,
-    }).start(spinFn);
-  };
-
-  useEffect(() => {
-    spinFn();
-  });
-
-  const spin = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
-
+const Loading = ({colors: {primary = '#00ff00'} = {}}) => {
   return (
     <Modal animationType="fade" transparent={false} visible={true}>
       <View style={styles.wrapper}>
-        <Row style={styles.iconWrapper}>
-          <Animated.View
-            style={{maxWidth: iconSize, transform: [{rotate: spin}]}}>
-            <Icon name="spinner" size={iconSize} color="#e2e2e2" />
-          </Animated.View>
+        <Row style={styles.activityLoaderWrapper}>
+          <ActivityIndicator size="large" color={primary} />
         </Row>
       </View>
     </Modal>
   );
 };
 
-export default memo(Loading);
+const mapStateToProps = ({ThemeReducer: {theme}}) => ({colors: theme});
+
+export default connect(mapStateToProps)(memo(Loading));
