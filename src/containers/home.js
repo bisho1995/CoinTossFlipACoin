@@ -25,7 +25,8 @@ Sound.setCategory('Playback');
 const Home = ({
   colors,
   animationSpeed: {dev: devSpeed, prod: prodSpeed} = {},
-  vibration,
+  vibrationDuration,
+  vibrationEnabled,
   incrementHead,
   incrementTail,
 }) => {
@@ -81,7 +82,9 @@ const Home = ({
   });
 
   const handleFlip = () => {
-    Vibration.vibrate(vibration.duration);
+    if (vibrationEnabled) {
+      Vibration.vibrate(vibrationDuration);
+    }
     if (!isCalculating) {
       setIsCalculating(true);
       let newRand = Math.floor(Math.random() * 10 + 3);

@@ -1,10 +1,12 @@
 import React from 'react';
-import Text from '../components/Text';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import {StyleSheet, ScrollView} from 'react-native';
+import Slider from '@react-native-community/slider';
+import styled from 'styled-components';
 import commonStyles from '../styles/common';
-import {View, Container, Header, Body, Card, CardItem, Row} from 'native-base';
+import {View, Container, Header, Body, Row, Switch} from 'native-base';
 import {connect} from 'react-redux';
+import Text from '../components/Text';
 
 const styles = StyleSheet.create({
   body: {
@@ -12,10 +14,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
+  margin: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  marginTiny: {
+    marginTop: 5,
+    marginBottom: 5,
+  },
 });
 
 const Settings = ({colors}) => {
   changeNavigationBarColor(colors.darkPrimary);
+
 
   return (
     <Container>
@@ -36,46 +47,48 @@ const Settings = ({colors}) => {
           backgroundColor: colors.backgroundColor,
         }}>
         <ScrollView alwaysBounceVertical>
-          <Card style={{backgroundColor: colors.backgroundColor}}>
-            <CardItem
+          <View
+            style={{
+              backgroundColor: colors.backgroundColor,
+            }}>
+            <View
               style={{
                 backgroundColor: colors.surfaceColor,
-                display: 'flex',
-                flexDirection: 'column',
                 ...commonStyles.padding,
+                ...styles.margin,
               }}>
+              <View>
+                <Text>Volume And Vibration</Text>
+              </View>
               <View style={{flex: 1, width: '100%'}}>
-                <Row style={{flex: 1}}>
+                <Row style={{...styles.marginTiny, flex: 1}}>
                   <View style={{flex: 1}}>
-                    <Text style={{fontWeight: 'bold'}}>Volume</Text>
+                    <Text>Volume Enabled</Text>
                   </View>
                   <View>
-                    <Text>toggle</Text>
+                    <Switch
+                      trackColor={colors.secondaryLight}
+                      thumbColor={colors.secondary}
+                      value={true}
+                    />
+                  </View>
+                </Row>
+                <Row style={{...styles.margin, flex: 1}}>
+                  <View style={{flex: 1}}>
+                    <Text>Volume</Text>
+                  </View>
+                  <View>
+                    <Slider
+                      step={0.1}
+                      thumbTintColor={colors.secondary}
+                      minimumTrackTintColor={colors.secondaryLight}
+                      style={{width: 150, height: 40}}
+                    />
                   </View>
                 </Row>
               </View>
-              <View style={{flex: 1, width: '100%'}}>
-                <Row>
-                  <View style={{flex: 1}}>
-                    <Text>Theme</Text>
-                  </View>
-                  <View>
-                    <Text>toggle</Text>
-                  </View>
-                </Row>
-              </View>
-              <View style={{flex: 1, width: '100%'}}>
-                <Row>
-                  <View style={{flex: 1}}>
-                    <Text>Speed</Text>
-                  </View>
-                  <View>
-                    <Text>toggle</Text>
-                  </View>
-                </Row>
-              </View>
-            </CardItem>
-          </Card>
+            </View>
+          </View>
         </ScrollView>
       </Container>
     </Container>
