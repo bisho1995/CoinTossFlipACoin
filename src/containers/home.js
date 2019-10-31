@@ -5,7 +5,6 @@ import {View, Text} from '../components';
 import commonStyles from '../styles/common';
 import {dimensions} from '../utils/utils';
 import UseTheme from '../context/UseTheme';
-import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import Loading from '../components/loading';
 import CoinAnimation from '../components/CoinAnimation';
 import Sound from 'react-native-sound';
@@ -30,8 +29,6 @@ const Home = ({
   incrementHead,
   incrementTail,
 }) => {
-  changeNavigationBarColor(colors.darkPrimary);
-
   const styles = StyleSheet.create({
     containerStyle: {
       ...StyleSheet.absoluteFill,
@@ -118,7 +115,7 @@ const Home = ({
       {loading ? <Loading /> : null}
       <Container>
         <StatusBar
-          backgroundColor={colors.darkPrimary}
+          backgroundColor={colors.backgroundColor}
           barStyle="light-content"
         />
         <View style={styles.containerStyle}>

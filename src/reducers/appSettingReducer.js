@@ -15,10 +15,25 @@ const appSettingReducer = (state = initialState, action) => {
         ...state,
         volumeEnabled: false,
       };
-    case '':
+    case 'ENABLE_VOLUME':
+      return {
+        ...state,
+        volumeEnabled: true,
+      };
+    case 'DISABLE_VIBRATION':
       return {
         ...state,
         vibrationEnabled: false,
+      };
+    case 'ENABLE_VIBRATION':
+      return {
+        ...state,
+        vibrationEnabled: true,
+      };
+    case 'VOLUME_LEVEL':
+      return {
+        ...state,
+        volumeLevel: action.value,
       };
     default: {
       return state;

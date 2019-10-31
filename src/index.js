@@ -5,10 +5,13 @@ import {store, persistor} from './store';
 import {Provider, connect} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import Loading from './components/loading';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 class MyApp extends React.PureComponent {
   render() {
     const {colors} = this.props;
     const ThemedApp = WithTheme(App, colors);
+
+    changeNavigationBarColor(colors.backgroundColor);
 
     return <ThemedApp />;
   }

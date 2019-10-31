@@ -37,6 +37,14 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingBottom: 10,
   },
+  margin: {
+    marginTop: 10,
+    marginBottom: 10,
+  },
+  marginTiny: {
+    marginTop: 5,
+    marginBottom: 5,
+  },
 });
 
 export default styles;

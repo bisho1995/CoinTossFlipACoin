@@ -1,10 +1,9 @@
 import React from 'react';
 import Text from '../components/Text';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, StatusBar} from 'react-native';
 import commonStyles from '../styles/common';
-import {Container, Header, Body, View} from 'native-base';
+import {Header, Body, View} from 'native-base';
 import {connect} from 'react-redux';
-import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 const styles = StyleSheet.create({
   body: {
@@ -15,11 +14,13 @@ const styles = StyleSheet.create({
 });
 
 const Statistics = ({colors, head, tail}) => {
-  changeNavigationBarColor(colors.darkPrimary);
-
   return (
-    <Container>
+    <View style={{flex: 1}}>
       <Header style={{backgroundColor: colors.surfaceColor}}>
+        <StatusBar
+          backgroundColor={colors.backgroundColor}
+          barStyle="light-content"
+        />
         <Body style={styles.body}>
           <View>
             <Text textAlign="center" color={colors.secondaryText} fontSize={20}>
@@ -42,20 +43,18 @@ const Statistics = ({colors, head, tail}) => {
           <Text>
             Heads: {head} |{' '}
             {head + tail > 0
-              ? parseFloat((head * 100) / (head + tail)).toFixed(2)
+              ? parseFloat((head * 100) / (head + tail)).toFixed(2) + '%'
               : ''}
-            %
           </Text>
           <Text>
             Tails: {tail} |{' '}
             {head + tail > 0
-              ? parseFloat((tail * 100) / (head + tail)).toFixed(2)
+              ? parseFloat((tail * 100) / (head + tail)).toFixed(2) + '%'
               : ''}
-            %
           </Text>
         </View>
       </View>
-    </Container>
+    </View>
   );
 };
 
