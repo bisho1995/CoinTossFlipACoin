@@ -41,15 +41,19 @@ const Statistics = ({colors, head, tail}) => {
             backgroundColor: colors.surfaceColor,
           }}>
           <Text>
-            Heads: {head} |{' '}
+            Heads: {head}
             {head + tail > 0
-              ? parseFloat((head * 100) / (head + tail)).toFixed(2) + '%'
+              ? ' | ' +
+                parseFloat((head * 100) / (head + tail)).toFixed(2) +
+                '%'
               : ''}
           </Text>
           <Text>
-            Tails: {tail} |{' '}
+            Tails: {tail}
             {head + tail > 0
-              ? parseFloat((tail * 100) / (head + tail)).toFixed(2) + '%'
+              ? ' | ' +
+                parseFloat((tail * 100) / (head + tail)).toFixed(2) +
+                '%'
               : ''}
           </Text>
         </View>
