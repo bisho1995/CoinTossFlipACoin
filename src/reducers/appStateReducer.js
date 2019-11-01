@@ -14,7 +14,11 @@ const appSettingReducer = (state = initialState, action) => {
       return {
         ...state,
         tail: state.tail + 1,
-      };;
+      };
+    case 'RESET_APP_STATE':
+      return {
+        initialState,
+      };
     default: {
       return state;
     }

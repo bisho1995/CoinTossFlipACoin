@@ -5,6 +5,7 @@ const colors = {
   primary: '#f44336',
   primaryDark: '#d32f2f',
   primaryLight: '#ef5350',
+  primaryVeryLight: '#E57373',
   primaryText: '#ffffff',
   secondaryText: '#BDBDBD',
   divider: '#BDBDBD',

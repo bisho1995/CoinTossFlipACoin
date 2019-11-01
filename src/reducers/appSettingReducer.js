@@ -1,8 +1,4 @@
 const initialState = {
-  animationSpeed: {
-    dev: 2000,
-    prod: 100,
-  },
   vibrationDuration: 200,
   vibrationEnabled: true,
   volumeEnabled: true,
@@ -34,6 +30,10 @@ const appSettingReducer = (state = initialState, action) => {
       return {
         ...state,
         coinSpeed: action.value,
+      };
+    case 'RESET_APP_SETTINGS':
+      return {
+        initialState,
       };
     default: {
       return state;

@@ -62,8 +62,8 @@ const VolumeAndVibration = ({
           </View>
           <View>
             <Switch
-              onTintColor={colors.backgroundColor}
-              trackColor={colors.backgroundColor}
+              onTintColor={colors.primaryVeryLight}
+              trackColor={colors.primaryVeryLight}
               thumbColor={colors.primary}
               value={volumeEnabled}
               onValueChange={volumeEnabledHandler}
@@ -76,8 +76,8 @@ const VolumeAndVibration = ({
           </View>
           <View>
             <Switch
-              onTintColor={colors.backgroundColor}
-              trackColor={colors.backgroundColor}
+              onTintColor={colors.primaryVeryLight}
+              trackColor={colors.primaryVeryLight}
               thumbColor={colors.primary}
               value={vibrationEnabled}
               onValueChange={vibrationEnabledHandler}
