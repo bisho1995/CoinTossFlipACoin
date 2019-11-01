@@ -6,8 +6,10 @@ import {Header, Body, View} from 'native-base';
 import {connect} from 'react-redux';
 
 const Statistics = ({colors, head, tail}) => {
-  const headPercentage = parseFloat((head * 100) / (head + tail)).toFixed(2);
-  const tailPercentage = parseFloat((tail * 100) / (head + tail)).toFixed(2);
+  let headPercentage =
+    head + tail > 0 ? parseFloat((head * 100) / (head + tail)).toFixed(2) : 0;
+  let tailPercentage =
+    head + tail > 0 ? parseFloat((tail * 100) / (head + tail)).toFixed(2) : 0;
 
   const styles = StyleSheet.create({
     body: {
@@ -34,14 +36,14 @@ const Statistics = ({colors, head, tail}) => {
 
   return (
     <View style={{flex: 1}}>
-      <Header style={{backgroundColor: colors.surfaceColor}}>
+      <Header style={{backgroundColor: colors.backgroundColor}}>
         <StatusBar
           backgroundColor={colors.backgroundColor}
           barStyle="light-content"
         />
         <Body style={styles.body}>
           <View>
-            <Text textAlign="center" color={colors.primaryText} fontSize={20}>
+            <Text textAlign="center" color={colors.primaryText} fontSize={25}>
               Statistics
             </Text>
           </View>

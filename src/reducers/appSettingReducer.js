@@ -30,6 +30,11 @@ const appSettingReducer = (state = initialState, action) => {
         ...state,
         vibrationEnabled: true,
       };
+    case 'COIN_SPEED':
+      return {
+        ...state,
+        coinSpeed: action.value,
+      };
     default: {
       return state;
     }

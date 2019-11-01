@@ -17,15 +17,12 @@ class CoinAnimation extends React.Component {
   }
 
   spinFn = () => {
-    const {
-      turns,
-      animationSpeed: {dev: devSpeed, prod: prodSpeed} = {},
-    } = this.props;
+    const {turns, coinSpeed} = this.props;
     this.setState(({currTurns}) => ({currTurns: currTurns + 1}));
     this.spinValue.setValue(0);
     Animated.timing(this.spinValue, {
       toValue: 1,
-      duration: __DEV__ ? devSpeed : prodSpeed,
+      duration: coinSpeed,
       easing: Easing.linear,
     }).start(() => {
       if (this.state.currTurns < turns) {
@@ -104,8 +101,8 @@ class CoinAnimation extends React.Component {
   }
 }
 
-const mapStateToProps = ({AppSettingReducer: {animationSpeed}}) => ({
-  animationSpeed,
+const mapStateToProps = ({AppSettingReducer: {coinSpeed}}) => ({
+  coinSpeed,
 });
 const WrappedCoinAnimation = connect(mapStateToProps)(CoinAnimation);
 

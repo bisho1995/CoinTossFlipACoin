@@ -27,7 +27,7 @@ const sectionPadding = {
 
 const Home = ({
   colors,
-  animationSpeed: {dev: devSpeed, prod: prodSpeed} = {},
+  coinSpeed,
   vibrationDuration,
   vibrationEnabled,
   incrementHead,
@@ -52,11 +52,11 @@ const Home = ({
     margin,
     flipBtn: {
       width: '100%',
-      maxWidth: 200,
+      maxWidth: 150,
       backgroundColor: colors.primary,
-      paddingTop: 30,
-      paddingBottom: 30,
-      borderRadius: 8,
+      paddingTop: 15,
+      paddingBottom: 15,
+      borderRadius: 10,
       elevation: 5,
     },
     footerSection: {
@@ -109,7 +109,7 @@ const Home = ({
         }
         setIsCalculating(false);
         coinFlipAudio.stop();
-      }, newRand * (__DEV__ ? devSpeed : prodSpeed));
+      }, newRand * coinSpeed);
     } else {
       ToastAndroid.show('Hold up', ToastAndroid.SHORT);
     }
@@ -170,7 +170,7 @@ const Home = ({
             <View style={styles.footerSection}>
               <View style={commonStyles.flexRowCentered}>
                 <Button style={styles.flipBtn} onPress={handleFlip}>
-                  <Text textAlign="center" fontSize={25} color="#fff">
+                  <Text textAlign="center" fontSize={20} color="#fff">
                     TOSS
                   </Text>
                 </Button>
@@ -185,14 +185,14 @@ const Home = ({
 
 const mapStateToProps = ({
   AppSettingReducer: {
-    animationSpeed,
+    coinSpeed,
     vibrationDuration,
     vibrationEnabled,
     volumeEnabled,
   },
 }) => {
   return {
-    animationSpeed,
+    coinSpeed,
     vibrationDuration,
     vibrationEnabled,
     volumeEnabled,

@@ -25,14 +25,14 @@ const styles = StyleSheet.create({
 const Settings = ({colors}) => {
   return (
     <Container>
-      <Header style={{backgroundColor: colors.surfaceColor}}>
+      <Header style={{backgroundColor: colors.backgroundColor}}>
         <StatusBar
           backgroundColor={colors.backgroundColor}
           barStyle="light-content"
         />
         <Body style={styles.body}>
           <View>
-            <Text textAlign="center" color={colors.primaryText} fontSize={20}>
+            <Text textAlign="center" color={colors.primaryText} fontSize={25}>
               Settings
             </Text>
           </View>

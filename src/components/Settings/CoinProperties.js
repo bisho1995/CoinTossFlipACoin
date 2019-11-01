@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {connect} from 'react-redux';
 import Heading from '../Heading';
 import {StyleSheet} from 'react-native';
 import View from '../View';
 import {Row} from 'native-base';
 import commonStyles from '../../styles/common';
-import {throttle} from 'lodash';
 import Slider from '@react-native-community/slider';
+import {debounce} from 'lodash';
 import Text from '../Text';
 
 const CoinProperties = ({coinSpeed, setCoinSpeed, colors}) => {
@@ -17,6 +17,15 @@ const CoinProperties = ({coinSpeed, setCoinSpeed, colors}) => {
     },
     text: {fontSize: 12},
   });
+
+  const minimumValue = 50;
+  const maximumValue = 500;
+
+  const [value, setValue] = useState(maximumValue - (coinSpeed - minimumValue));
+
+  const handleSliderChange = debounce(val => {
+    setCoinSpeed(minimumValue + maximumValue - val);
+  }, 800);
 
   return (
     <View
@@ -32,12 +41,14 @@ const CoinProperties = ({coinSpeed, setCoinSpeed, colors}) => {
             <Text style={styles.text}>Speed</Text>
           </View>
           <Slider
-            step={0.1}
+            step={10}
             thumbTintColor={colors.primary}
             minimumTrackTintColor={colors.primaryLight}
             style={{width: 150, height: 40}}
-            //   value={volume}
-            //   onValueChange={volumeChangeHandler}
+            minimumValue={minimumValue}
+            maximumValue={maximumValue}
+            value={value}
+            onValueChange={handleSliderChange}
           />
         </Row>
       </View>
