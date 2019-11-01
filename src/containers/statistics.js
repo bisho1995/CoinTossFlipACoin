@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Heading} from '../components';
+import {Heading, Text} from '../components';
 import {StyleSheet, StatusBar} from 'react-native';
 import commonStyles from '../styles/common';
 import {Header, Body, View} from 'native-base';
@@ -43,7 +43,7 @@ const Statistics = ({colors, head, tail}) => {
         />
         <Body style={styles.body}>
           <View>
-            <Text textAlign="center" color={colors.primaryText} fontSize={25}>
+            <Text textAlign="center" color={colors.primaryText} fontSize={20}>
               Statistics
             </Text>
           </View>
@@ -63,8 +63,24 @@ const Statistics = ({colors, head, tail}) => {
 
         <View style={styles.surface}>
           <Heading title="All Toss" />
-          <Text style={styles.text}>Heads: {head}</Text>
-          <Text style={styles.text}>Tails: {tail}</Text>
+          <View style={{display: 'flex', flexDirection: 'row'}}>
+            <Text width="auto" style={styles.text}>
+              Out of a total of{' '}
+            </Text>
+            <Text width="auto" style={styles.text}>
+              {head + tail}
+            </Text>
+            <Text width="auto" style={styles.text}>
+              {' '}
+              tosses.
+            </Text>
+          </View>
+          <Text fontWeight="bold" style={styles.text}>
+            Heads: {head}
+          </Text>
+          <Text fontWeight="bold" style={styles.text}>
+            Tails: {tail}
+          </Text>
         </View>
 
         {/* <View style={styles.surface}>

@@ -32,7 +32,7 @@ const Settings = ({colors}) => {
         />
         <Body style={styles.body}>
           <View>
-            <Text textAlign="center" color={colors.primaryText} fontSize={25}>
+            <Text textAlign="center" color={colors.primaryText} fontSize={20}>
               Settings
             </Text>
           </View>

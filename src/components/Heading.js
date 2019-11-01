@@ -12,7 +12,7 @@ const Heading = ({title, colors, icon}) => {
       flexDirection: 'row',
     },
     text: {
-      fontSize: 18,
+      fontSize: 16,
       color: colors.primaryText,
     },
     icon: {
@@ -25,7 +25,7 @@ const Heading = ({title, colors, icon}) => {
       {icon ? (
         <Icon
           name={icon.name}
-          size={30}
+          size={25}
           color={icon.color}
           style={styles.icon}
         />
