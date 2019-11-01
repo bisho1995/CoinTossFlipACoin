@@ -67,7 +67,7 @@ const Statistics = ({colors, head, tail}) => {
             <Text width="auto" style={styles.text}>
               Out of a total of{' '}
             </Text>
-            <Text width="auto" style={styles.text}>
+            <Text width="auto" fontWeight="bold" style={styles.text}>
               {head + tail}
             </Text>
             <Text width="auto" style={styles.text}>

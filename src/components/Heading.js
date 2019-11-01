@@ -13,6 +13,7 @@ const Heading = ({title, colors, icon}) => {
     },
     text: {
       fontSize: 16,
+      fontWeight: 'bold',
       color: colors.primaryText,
     },
     icon: {
