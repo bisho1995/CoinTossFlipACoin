@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const Heading = ({title, colors, icon}) => {
   const styles = StyleSheet.create({
     view: {
-      flex: 1,
       marginBottom: 10,
       display: 'flex',
       flexDirection: 'row',

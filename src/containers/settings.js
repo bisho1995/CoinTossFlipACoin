@@ -4,7 +4,7 @@ import commonStyles from '../styles/common';
 import {View, Container, Header, Body} from 'native-base';
 import {connect} from 'react-redux';
 import Text from '../components/Text';
-import {VolumeAndVibration} from '../components/Settings';
+import {VolumeAndVibration, CoinProperties} from '../components/Settings';
 
 const styles = StyleSheet.create({
   body: {
@@ -32,7 +32,7 @@ const Settings = ({colors}) => {
         />
         <Body style={styles.body}>
           <View>
-            <Text textAlign="center" color={colors.secondaryText} fontSize={20}>
+            <Text textAlign="center" color={colors.primaryText} fontSize={20}>
               Settings
             </Text>
           </View>
@@ -51,6 +51,7 @@ const Settings = ({colors}) => {
               backgroundColor: colors.backgroundColor,
             }}>
             <VolumeAndVibration />
+            <CoinProperties />
           </View>
         </ScrollView>
       </Container>

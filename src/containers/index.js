@@ -13,24 +13,24 @@ const WithNavigation = ({theme: colors}) => {
       Home: {
         screen: Home,
         navigationOptions: {
-          tabBarIcon: () => (
-            <Icon style={{color: '#fff'}} name="home" size={30} />
+          tabBarIcon: ({tintColor}) => (
+            <Icon style={{color: tintColor}} name="home" size={30} />
           ),
         },
       },
       Statistics: {
         screen: Statistics,
         navigationOptions: {
-          tabBarIcon: () => (
-            <Icon style={{color: '#fff'}} name="file-text" size={24} />
+          tabBarIcon: ({tintColor}) => (
+            <Icon style={{color: tintColor}} name="file-text" size={22} />
           ),
         },
       },
       Settings: {
         screen: Settings,
         navigationOptions: {
-          tabBarIcon: () => (
-            <Icon style={{color: '#fff'}} name="gear" size={26} />
+          tabBarIcon: ({tintColor}) => (
+            <Icon style={{color: tintColor}} name="gear" size={26} />
           ),
         },
       },
@@ -41,8 +41,8 @@ const WithNavigation = ({theme: colors}) => {
 
       tabBarOptions: {
         showLabel: false,
-        activeTintColor: colors.secondaryText,
-        inactiveTintColor: 'grey',
+        activeTintColor: colors.primaryLight,
+        inactiveTintColor: colors.primaryText,
         style: {
           paddingTop: 0,
           backgroundColor: colors.surfaceColor,

@@ -6,7 +6,7 @@ const initialState = {
   vibrationDuration: 200,
   vibrationEnabled: true,
   volumeEnabled: true,
-  volumeLevel: 1, // 0.0 to 1.0
+  coinSpeed: 100,
 };
 const appSettingReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -29,11 +29,6 @@ const appSettingReducer = (state = initialState, action) => {
       return {
         ...state,
         vibrationEnabled: true,
-      };
-    case 'VOLUME_LEVEL':
-      return {
-        ...state,
-        volumeLevel: action.value,
       };
     default: {
       return state;

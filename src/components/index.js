@@ -7,7 +7,7 @@ import CoinAnimation from './CoinAnimation';
 import Loading from './loading';
 import ThemePicker from './ThemePicker';
 import Circle from './Circle';
-
+import Heading from './Heading';
 export {
   Coin,
   Head,
@@ -18,4 +18,5 @@ export {
   Loading,
   ThemePicker,
   Circle,
+  Heading,
 };

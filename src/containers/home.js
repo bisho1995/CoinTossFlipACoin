@@ -20,6 +20,10 @@ const margin = {
 };
 
 Sound.setCategory('Playback');
+const sectionPadding = {
+  paddingTop: 20,
+  paddingBottom: 20,
+};
 
 const Home = ({
   colors,
@@ -28,6 +32,7 @@ const Home = ({
   vibrationEnabled,
   incrementHead,
   incrementTail,
+  volumeEnabled,
 }) => {
   const styles = StyleSheet.create({
     containerStyle: {
@@ -48,7 +53,7 @@ const Home = ({
     flipBtn: {
       width: '100%',
       maxWidth: 200,
-      backgroundColor: colors.secondary,
+      backgroundColor: colors.primary,
       paddingTop: 30,
       paddingBottom: 30,
       borderRadius: 8,
@@ -62,9 +67,10 @@ const Home = ({
       paddingBottom: 10,
       paddingTop: 10,
     },
-    sectionPadding: {
-      paddingTop: 20,
-      paddingBottom: 20,
+    sectionPadding: sectionPadding,
+    coinContainer: {
+      ...sectionPadding,
+      flex: 6,
     },
   });
   const [rand, setRand] = useState(0);
@@ -88,7 +94,9 @@ const Home = ({
       while (rand === newRand) {
         newRand = Math.floor(Math.random() * 10 + 8);
       }
-      coinFlipAudio.play();
+      if (volumeEnabled) {
+        coinFlipAudio.play();
+      }
       setMessage(null);
       setRand(newRand);
       setTimeout(() => {
@@ -119,11 +127,7 @@ const Home = ({
           barStyle="light-content"
         />
         <View style={styles.containerStyle}>
-          <Row
-            style={{
-              ...styles.sectionPadding,
-              flex: 6,
-            }}>
+          <Row style={styles.coinContainer}>
             <View
               style={{
                 ...styles.margin,
@@ -152,7 +156,7 @@ const Home = ({
                 <Text
                   fontSize={30}
                   textAlign="center"
-                  color={colors.secondaryText}>
+                  color={colors.primaryText}>
                   {message}
                 </Text>
               </View>
@@ -179,10 +183,19 @@ const Home = ({
   );
 };
 
-const mapStateToProps = ({AppSettingReducer: {animationSpeed, vibration}}) => {
+const mapStateToProps = ({
+  AppSettingReducer: {
+    animationSpeed,
+    vibrationDuration,
+    vibrationEnabled,
+    volumeEnabled,
+  },
+}) => {
   return {
     animationSpeed,
-    vibration,
+    vibrationDuration,
+    vibrationEnabled,
+    volumeEnabled,
   };
 };
 
