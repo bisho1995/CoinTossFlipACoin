@@ -11,6 +11,7 @@ const colors = {
   divider: '#BDBDBD',
   backgroundColor: '#121212',
   surfaceColor: '#1e1e1e',
+  error: '#EF9A9A',
 };
 
 export default colors;

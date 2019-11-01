@@ -21,7 +21,7 @@ const CoinProperties = ({coinSpeed, setCoinSpeed, colors}) => {
   const minimumValue = 50;
   const maximumValue = 500;
 
-  const [value, setValue] = useState(maximumValue - (coinSpeed - minimumValue));
+  const [value] = useState(maximumValue - (coinSpeed - minimumValue));
 
   const handleSliderChange = debounce(val => {
     setCoinSpeed(minimumValue + maximumValue - val);

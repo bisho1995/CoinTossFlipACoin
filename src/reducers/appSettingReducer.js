@@ -33,7 +33,7 @@ const appSettingReducer = (state = initialState, action) => {
       };
     case 'RESET_APP_SETTINGS':
       return {
-        initialState,
+        ...initialState,
       };
     default: {
       return state;
