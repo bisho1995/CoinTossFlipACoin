@@ -1,6 +1,6 @@
 const color = {
-  background: '#f3d078',
-  color: '#c37e13',
+  background: '#1e1e1e',
+  color: '#d32f2f',
 };
 
 export default color;

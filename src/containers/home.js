@@ -33,6 +33,7 @@ const Home = ({
   incrementHead,
   incrementTail,
   volumeEnabled,
+  prevResult = null,
 }) => {
   const styles = StyleSheet.create({
     containerStyle: {
@@ -159,6 +160,14 @@ const Home = ({
                   color={colors.primaryText}>
                   {message}
                 </Text>
+                {prevResult && !isCalculating ? (
+                  <Text
+                    fontSize={12}
+                    textAlign="center"
+                    color={colors.primaryText}>
+                    The previous result was {prevResult}
+                  </Text>
+                ) : null}
               </View>
             </View>
           </Row>
@@ -190,12 +199,14 @@ const mapStateToProps = ({
     vibrationEnabled,
     volumeEnabled,
   },
+  AppStateReducer: {prevResult},
 }) => {
   return {
     coinSpeed,
     vibrationDuration,
     vibrationEnabled,
     volumeEnabled,
+    prevResult,
   };
 };
 

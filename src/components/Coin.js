@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import CoinStyle from '../styles/coin';
-
+import {connect} from 'react-redux';
 const StyledCoin = styled.View`
   width: ${props => props.dimension};
   height: ${props => props.dimension};
@@ -10,14 +9,16 @@ const StyledCoin = styled.View`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: ${CoinStyle.background};
-  border-color: ${CoinStyle.color};
-  border-width: 10;
+  background: ${({background}) => background};
+  border-color: ${({highlight}) => highlight};
+  border-width: 3;
   font-family: 'Poppins';
 `;
 
-const Coin = ({children, ...props}) => (
-  <StyledCoin {...props}>{children}</StyledCoin>
+const Coin = ({children, colors: {surfaceColor, primary}, ...props}) => (
+  <StyledCoin {...props} background={surfaceColor} highlight={primary}>
+    {children}
+  </StyledCoin>
 );
 
 Coin.propTypes = {
@@ -25,4 +26,8 @@ Coin.propTypes = {
   children: PropTypes.node,
 };
 
-export default Coin;
+const mapStateToProps = ({ThemeReducer: {theme}}) => ({
+  colors: theme,
+});
+
+export default connect(mapStateToProps)(Coin);

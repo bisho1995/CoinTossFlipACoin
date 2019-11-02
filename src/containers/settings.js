@@ -54,8 +54,10 @@ const Settings = ({colors}) => {
             style={{
               backgroundColor: colors.backgroundColor,
             }}>
-            <VolumeAndVibration />
-            <CoinProperties />
+            <View>
+              <VolumeAndVibration />
+              <CoinProperties />
+            </View>
             <ResetApp />
           </View>
         </ScrollView>
