@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback} from 'react';
 import {connect} from 'react-redux';
 import Heading from '../Heading';
 import {StyleSheet} from 'react-native';
@@ -21,11 +21,14 @@ const CoinProperties = ({coinSpeed, setCoinSpeed, colors}) => {
   const minimumValue = 50;
   const maximumValue = 500;
 
-  const [value] = useState(maximumValue - (coinSpeed - minimumValue));
+  const value = maximumValue - (coinSpeed - minimumValue);
 
-  const handleSliderChange = debounce(val => {
-    setCoinSpeed(minimumValue + maximumValue - val);
-  }, 800);
+  const handleSliderChange = useCallback(
+    debounce(val => {
+      setCoinSpeed(minimumValue + maximumValue - val);
+    }, 300),
+    [],
+  );
 
   return (
     <View
@@ -66,7 +69,7 @@ const mapStateToProps = ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    setCoinSpeed: speed => dispatch({type: 'COIN_SPEED', value: speed}),
+    setCoinSpeed: speed => dispatch({type: 'SET_COIN_SPEED', value: speed}),
   };
 };
 

@@ -1,0 +1,13 @@
+Greetings everyone, I have recently made my first react-native app. I am calling it Coin Toss - Flip a coin. It is going to be solely dedicated to android as I do not own an iPhone and I did not use expo. I did not launch this app yet as a few features are remaining.
+
+I am a frontend developer working on React. I have one year of experience and I love the react ecosystem so decided to explore more about react-native. This led me to build this app.
+
+The app is simple, toss a coin. The added feature is that it records statistics and has a settings page that controls the sound, vibration and the speed in which the coin spins. It also has options to reset the app. For the tech stack, I am using redux, redux-persist, native-base, react-navigation, and styled-components.
+
+I am attaching a few screenshots of the application, please let me know your thoughts on this. Positive and negative criticism is welcome.
+
+Once I finish the project and figure out a way of storing the password of keystore without exposing it, I will make this repo public in Github.
+
+I am also planning to write a detailed medium article about this experience as I believe I have a lot to talk about. I am planning to discuss the challenges I faced with react-navigation, animations in react-native, how often the build failed and a lot of other stuff.
+
+Please let me know your thoughts on this app.

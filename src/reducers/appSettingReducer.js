@@ -4,32 +4,22 @@ const initialState = {
   volumeEnabled: true,
   coinSpeed: 100,
 };
-const appSettingReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'DISABLE_VOLUME':
+const appSettingReducer = (state = initialState, {type, value} = {}) => {
+  switch (type) {
+    case 'VOLUME_TOGGLE':
       return {
         ...state,
-        volumeEnabled: false,
+        volumeEnabled: value,
       };
-    case 'ENABLE_VOLUME':
+    case 'VIBRATION_TOGGLE':
       return {
         ...state,
-        volumeEnabled: true,
+        vibrationEnabled: value,
       };
-    case 'DISABLE_VIBRATION':
+    case 'SET_COIN_SPEED':
       return {
         ...state,
-        vibrationEnabled: false,
-      };
-    case 'ENABLE_VIBRATION':
-      return {
-        ...state,
-        vibrationEnabled: true,
-      };
-    case 'COIN_SPEED':
-      return {
-        ...state,
-        coinSpeed: action.value,
+        coinSpeed: value,
       };
     case 'RESET_APP_SETTINGS':
       return {

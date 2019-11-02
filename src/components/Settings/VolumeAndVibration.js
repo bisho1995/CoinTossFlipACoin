@@ -1,5 +1,6 @@
-import React, {useState, useCallback} from 'react';
+import React, {useCallback} from 'react';
 import Heading from '../Heading';
+import PropTypes from 'prop-types';
 import View from '../View';
 import Text from '../Text';
 import {Switch, StyleSheet, Vibration} from 'react-native';
@@ -9,10 +10,10 @@ import {connect} from 'react-redux';
 
 const VolumeAndVibration = ({
   colors,
-  enableVolume,
-  disableVolume,
-  enableVibration,
-  disableVibration,
+  vibrationEnabled,
+  volumeEnabled,
+  volumeToggle,
+  vibrationToggle,
   vibrationDuration,
 }) => {
   const styles = StyleSheet.create({
@@ -23,25 +24,15 @@ const VolumeAndVibration = ({
     text: {fontSize: 12},
   });
 
-  const [volumeEnabled, setVolumeEnabled] = useState(true);
-  const [vibrationEnabled, setVibrationEnabled] = useState(true);
+  const volumeChangeHandler = useCallback(enabled => volumeToggle(enabled), [
+    volumeToggle,
+  ]);
 
-  const volumeEnabledHandler = useCallback(
-    enabled => {
-      setVolumeEnabled(enabled);
-      return enabled ? enableVolume() : disableVolume();
-    },
-    [disableVolume, enableVolume],
-  );
-
-  const vibrationEnabledHandler = useCallback(
-    enabled => {
-      setVibrationEnabled(enabled);
-      return enabled
-        ? enableVibration() && Vibration.vibrate(vibrationDuration)
-        : disableVibration();
-    },
-    [disableVibration, enableVibration, vibrationDuration],
+  const vibrationChangeHandler = useCallback(
+    enabled =>
+      vibrationToggle(enabled) &&
+      (enabled && Vibration.vibrate(vibrationDuration)),
+    [vibrationDuration, vibrationToggle],
   );
 
   return (
@@ -66,7 +57,7 @@ const VolumeAndVibration = ({
               trackColor={colors.primaryVeryLight}
               thumbColor={colors.primary}
               value={volumeEnabled}
-              onValueChange={volumeEnabledHandler}
+              onValueChange={volumeChangeHandler}
             />
           </View>
         </Row>
@@ -80,7 +71,7 @@ const VolumeAndVibration = ({
               trackColor={colors.primaryVeryLight}
               thumbColor={colors.primary}
               value={vibrationEnabled}
-              onValueChange={vibrationEnabledHandler}
+              onValueChange={vibrationChangeHandler}
             />
           </View>
         </Row>
@@ -90,15 +81,13 @@ const VolumeAndVibration = ({
 };
 
 const mapStateToProps = ({
-  AppSettingReducer: {vibrationDuration},
+  AppSettingReducer: {vibrationDuration, vibrationEnabled, volumeEnabled},
   ThemeReducer: {theme},
-}) => ({colors: theme, vibrationDuration});
+}) => ({colors: theme, vibrationDuration, vibrationEnabled, volumeEnabled});
 const mapDispatchToProps = dispatch => {
   return {
-    enableVolume: () => dispatch({type: 'ENABLE_VOLUME'}),
-    disableVolume: () => dispatch({type: 'DISABLE_VOLUME'}),
-    enableVibration: () => dispatch({type: 'ENABLE_VIBRATION'}),
-    disableVibration: () => dispatch({type: 'DISABLE_VIBRATION'}),
+    volumeToggle: x => dispatch({type: 'VOLUME_TOGGLE', value: x}),
+    vibrationToggle: x => dispatch({type: 'VIBRATION_TOGGLE', value: x}),
   };
 };
 
@@ -106,3 +95,20 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(VolumeAndVibration);
+
+VolumeAndVibration.propTypes = {
+  colors: PropTypes.shape({}),
+  vibrationEnabled: PropTypes.bool,
+  volumeEnabled: PropTypes.bool,
+  volumeToggle: PropTypes.func,
+  vibrationToggle: PropTypes.func,
+  vibrationDuration: PropTypes.number,
+};
+VolumeAndVibration.defaultProps = {
+  colors: {},
+  vibrationEnabled: true,
+  volumeEnabled: true,
+  volumeToggle: () => {},
+  vibrationToggle: () => {},
+  vibrationDuration: 200,
+};
