@@ -42,6 +42,14 @@ Features
 
 I could not complete this project without the help of redux, redux-persist, native-base, react-naive-vector-icons, react-navigation, and styled-components
 
+## Getting Started
+
+0. Globally install react-native
+1. ```yarn```
+2. In one terminal type ```react-native start```
+3. In another terminal type ```yarn android```
+4. To build a production release create .keystore file, set up password. Then type ```build-apk-release```
+
 
 ![Feature Image](screenshots/0.jpg) ![Feature Image](screenshots/1.jpg) ![Feature Image](screenshots/2.jpg) ![Feature Image](screenshots/3.jpg)![Feature Image](screenshots/4.jpg)
 
