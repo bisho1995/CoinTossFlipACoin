@@ -53,7 +53,8 @@ const Home = ({
     margin,
     flipBtn: {
       width: '100%',
-      maxWidth: 150,
+      maxWidth: 170,
+      minHeight: 65,
       backgroundColor: colors.primary,
       paddingTop: 15,
       paddingBottom: 15,

@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     ...commonStyles.marginTiny,
     flex: 1,
   },
-  text: {fontSize: 12, marginTop: 5},
+  text: {fontSize: 12, paddingTop: 10},
   button: {
     maxWidth: 120,
     height: 45,

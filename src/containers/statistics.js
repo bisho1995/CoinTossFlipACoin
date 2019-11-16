@@ -96,7 +96,16 @@ const Statistics = ({colors, head, tail, resetAppState}) => {
             </Text>
           </View>
         </View>
-        <Button onPress={resetAppState} block danger title="reset">
+        <Button
+          onPress={resetAppState}
+          style={{
+            minHeight: 55,
+            backgroundColor: colors.primary,
+            borderRadius: 10,
+          }}
+          block
+          danger
+          title="reset">
           <Text style={{textAlign: 'center', fontSize: 18}}>Reset</Text>
         </Button>
       </View>

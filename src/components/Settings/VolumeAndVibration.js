@@ -13,7 +13,11 @@ const styles = StyleSheet.create({
     ...commonStyles.marginTiny,
     flex: 1,
   },
-  text: {fontSize: 12},
+  text: {
+    fontSize: 12,
+    minHeight: 44,
+    paddingTop: 10,
+  },
   switchTouchableArea: {
     maxWidth: 90,
     minHeight: 44,
