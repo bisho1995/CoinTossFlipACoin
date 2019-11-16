@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, memo} from 'react';
 import Heading from '../Heading';
 import PropTypes from 'prop-types';
 import View from '../View';
@@ -71,7 +71,7 @@ const VolumeAndVibration = ({
           <View>
             <Text style={styles.text}>Vibration</Text>
           </View>
-          <View>
+          <View style={styles.switchTouchableArea}>
             <Switch
               onTintColor={colors.primaryVeryLight}
               trackColor={colors.primaryVeryLight}
@@ -100,7 +100,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(VolumeAndVibration);
+)(memo(VolumeAndVibration));
 
 VolumeAndVibration.propTypes = {
   colors: PropTypes.shape({}),
