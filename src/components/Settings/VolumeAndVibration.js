@@ -8,6 +8,20 @@ import {Row} from 'native-base';
 import commonStyles from '../../styles/common';
 import {connect} from 'react-redux';
 
+const styles = StyleSheet.create({
+  row: {
+    ...commonStyles.marginTiny,
+    flex: 1,
+  },
+  text: {fontSize: 12},
+  switchTouchableArea: {
+    maxWidth: 90,
+    minHeight: 44,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+});
+
 const VolumeAndVibration = ({
   colors,
   vibrationEnabled,
@@ -16,14 +30,6 @@ const VolumeAndVibration = ({
   vibrationToggle,
   vibrationDuration,
 }) => {
-  const styles = StyleSheet.create({
-    row: {
-      ...commonStyles.marginTiny,
-      flex: 1,
-    },
-    text: {fontSize: 12},
-  });
-
   const volumeChangeHandler = useCallback(enabled => volumeToggle(enabled), [
     volumeToggle,
   ]);
@@ -51,7 +57,7 @@ const VolumeAndVibration = ({
           <View>
             <Text style={styles.text}>Volume</Text>
           </View>
-          <View>
+          <View style={styles.switchTouchableArea}>
             <Switch
               onTintColor={colors.primaryVeryLight}
               trackColor={colors.primaryVeryLight}
